@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+	<meta name="robots" content="noindex" />
+
+	<title>File env/dbmanager.class.php | HZGuestBook</title>
+
+	<script type="text/javascript" src="resources/combined.js?2172775131"></script>
+	<script type="text/javascript" src="elementlist.js?2511054786"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li class="active"><a href="package-HZGuestBook.html">HZGuestBook<span></span></a>
+						<ul>
+				<li class="active"><a href="package-HZGuestBook.Env.html">Env</a>
+						</li>
+							</ul></li>
+				<li><a href="package-None.html">None</a>
+						</li>
+				<li><a href="package-PHP.html">PHP</a>
+						</li>
+				<li><a href="package-rubrica.html">rubrica</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Config.html">Config</a></li>
+				<li class="active"><a href="class-DbManager.html">DbManager</a></li>
+				<li><a href="class-HttpRequest.html">HttpRequest</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-HZGuestBook.Env.html" title="Summary of HZGuestBook\Env"><span>Package</span></a>
+			</li>
+			<li>
+				<a href="class-DbManager.html" title="Summary of DbManager"><span>Class</span></a>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<pre><code><span id="1" class="l"><a class="l" href="#1">  1: </a><span class="xlang">&lt;?php</span>
+</span><span id="2" class="l"><a class="l" href="#2">  2: </a>
+</span><span id="3" class="l"><a class="l" href="#3">  3: </a><span class="php-comment">/*
+</span></span><span id="4" class="l"><a class="l" href="#4">  4: </a><span class="php-comment"> * Copyright (C) 2014 Luca
+</span></span><span id="5" class="l"><a class="l" href="#5">  5: </a><span class="php-comment"> *
+</span></span><span id="6" class="l"><a class="l" href="#6">  6: </a><span class="php-comment"> * This program is free software: you can redistribute it and/or modify
+</span></span><span id="7" class="l"><a class="l" href="#7">  7: </a><span class="php-comment"> * it under the terms of the GNU Affero General Public License as published by
+</span></span><span id="8" class="l"><a class="l" href="#8">  8: </a><span class="php-comment"> * the Free Software Foundation, either version 3 of the License, or
+</span></span><span id="9" class="l"><a class="l" href="#9">  9: </a><span class="php-comment"> * (at your option) any later version.
+</span></span><span id="10" class="l"><a class="l" href="#10"> 10: </a><span class="php-comment"> *
+</span></span><span id="11" class="l"><a class="l" href="#11"> 11: </a><span class="php-comment"> * This program is distributed in the hope that it will be useful,
+</span></span><span id="12" class="l"><a class="l" href="#12"> 12: </a><span class="php-comment"> * but WITHOUT ANY WARRANTY; without even the implied warranty of
+</span></span><span id="13" class="l"><a class="l" href="#13"> 13: </a><span class="php-comment"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+</span></span><span id="14" class="l"><a class="l" href="#14"> 14: </a><span class="php-comment"> * GNU Affero General Public License for more details.
+</span></span><span id="15" class="l"><a class="l" href="#15"> 15: </a><span class="php-comment"> *
+</span></span><span id="16" class="l"><a class="l" href="#16"> 16: </a><span class="php-comment"> * You should have received a copy of the GNU Affero General Public License
+</span></span><span id="17" class="l"><a class="l" href="#17"> 17: </a><span class="php-comment"> * along with this program.  If not, see &lt;http://www.gnu.org/licenses/agpl-3.0.html&gt;.
+</span></span><span id="18" class="l"><a class="l" href="#18"> 18: </a><span class="php-comment"> */</span>
+</span><span id="19" class="l"><a class="l" href="#19"> 19: </a>
+</span><span id="20" class="l"><a class="l" href="#20"> 20: </a><span class="php-comment">/**
+</span></span><span id="21" class="l"><a class="l" href="#21"> 21: </a><span class="php-comment"> *  Interfaccia di comunicazione con il db (Database type MySql-PDO)
+</span></span><span id="22" class="l"><a class="l" href="#22"> 22: </a><span class="php-comment"> * 
+</span></span><span id="23" class="l"><a class="l" href="#23"> 23: </a><span class="php-comment"> *  @author  Luca Liscio &amp; Marco Lettieri
+</span></span><span id="24" class="l"><a class="l" href="#24"> 24: </a><span class="php-comment"> *  @version v 2.0-PDO 2014/06/25 16:03:20
+</span></span><span id="25" class="l"><a class="l" href="#25"> 25: </a><span class="php-comment"> *  @copyright Copyright 2014 Luca Liscio 
+</span></span><span id="26" class="l"><a class="l" href="#26"> 26: </a><span class="php-comment"> *  @license http://www.gnu.org/licenses/agpl-3.0.html GNU/AGPL3
+</span></span><span id="27" class="l"><a class="l" href="#27"> 27: </a><span class="php-comment"> *   
+</span></span><span id="28" class="l"><a class="l" href="#28"> 28: </a><span class="php-comment"> *  @package HZGuestBook
+</span></span><span id="29" class="l"><a class="l" href="#29"> 29: </a><span class="php-comment"> *  @subpackage Env
+</span></span><span id="30" class="l"><a class="l" href="#30"> 30: </a><span class="php-comment"> *  @filesource
+</span></span><span id="31" class="l"><a class="l" href="#31"> 31: </a><span class="php-comment"> */</span>
+</span><span id="32" class="l"><a class="l" href="#32"> 32: </a>
+</span><span id="33" class="l"><a class="l" href="#33"> 33: </a>    <span class="php-keyword1">class</span> <a id="DbManager" href="#DbManager">DbManager</a> {
+</span><span id="34" class="l"><a class="l" href="#34"> 34: </a>        
+</span><span id="35" class="l"><a class="l" href="#35"> 35: </a>        <span class="php-keyword1">private</span> <span class="php-var"><a id="$_conn" href="#$_conn">$_conn</a></span>;
+</span><span id="36" class="l"><a class="l" href="#36"> 36: </a>        
+</span><span id="37" class="l"><a class="l" href="#37"> 37: </a>        <span class="php-comment">/**
+</span></span><span id="38" class="l"><a class="l" href="#38"> 38: </a><span class="php-comment">         * All'atto della costruziine di un nuovo ogetto esegue la connessione al DB
+</span></span><span id="39" class="l"><a class="l" href="#39"> 39: </a><span class="php-comment">         * 
+</span></span><span id="40" class="l"><a class="l" href="#40"> 40: </a><span class="php-comment">         * @param array $config contiene i parametri (type, host, uname, passwd, db) necessari alla connesione
+</span></span><span id="41" class="l"><a class="l" href="#41"> 41: </a><span class="php-comment">         * @throws PDOException
+</span></span><span id="42" class="l"><a class="l" href="#42"> 42: </a><span class="php-comment">         */</span>
+</span><span id="43" class="l"><a class="l" href="#43"> 43: </a>        <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>(<span class="php-var">$config</span>) {
+</span><span id="44" class="l"><a class="l" href="#44"> 44: </a>            <span class="php-var">$connstr</span> = <span class="php-var">$config</span>[<span class="php-quote">'type'</span>].<span class="php-quote">&quot;:host=&quot;</span>.<span class="php-var">$config</span>[<span class="php-quote">'host'</span>].<span class="php-quote">&quot;;dbname=&quot;</span>.<span class="php-var">$config</span>[<span class="php-quote">'db'</span>].<span class="php-quote">&quot;;charset=utf8&quot;</span>;
+</span><span id="45" class="l"><a class="l" href="#45"> 45: </a>            <span class="php-var">$this</span>-&gt;_conn = <span class="php-keyword1">new</span> PDO(<span class="php-var">$connstr</span>, <span class="php-var">$config</span>[<span class="php-quote">'uname'</span>], <span class="php-var">$config</span>[<span class="php-quote">'passwd'</span>]);
+</span><span id="46" class="l"><a class="l" href="#46"> 46: </a>            <span class="php-var">$this</span>-&gt;_conn-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+</span><span id="47" class="l"><a class="l" href="#47"> 47: </a>            <span class="php-var">$this</span>-&gt;_conn-&gt;setAttribute(PDO::ATTR_EMULATE_PREPARES, <span class="php-keyword1">false</span>);
+</span><span id="48" class="l"><a class="l" href="#48"> 48: </a>        }
+</span><span id="49" class="l"><a class="l" href="#49"> 49: </a>        
+</span><span id="50" class="l"><a class="l" href="#50"> 50: </a>        <span class="php-comment">/**
+</span></span><span id="51" class="l"><a class="l" href="#51"> 51: </a><span class="php-comment">         * Chiude la connesione con il db
+</span></span><span id="52" class="l"><a class="l" href="#52"> 52: </a><span class="php-comment">         */</span>
+</span><span id="53" class="l"><a class="l" href="#53"> 53: </a>        <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_close" href="#_close">close</a>(){
+</span><span id="54" class="l"><a class="l" href="#54"> 54: </a>            <span class="php-var">$this</span>-&gt;_conn = <span class="php-keyword1">null</span>;
+</span><span id="55" class="l"><a class="l" href="#55"> 55: </a>        }
+</span><span id="56" class="l"><a class="l" href="#56"> 56: </a>    
+</span><span id="57" class="l"><a class="l" href="#57"> 57: </a>        <span class="php-comment">/**
+</span></span><span id="58" class="l"><a class="l" href="#58"> 58: </a><span class="php-comment">         * Esegue un query sql e restituisce il risultato
+</span></span><span id="59" class="l"><a class="l" href="#59"> 59: </a><span class="php-comment">         * 
+</span></span><span id="60" class="l"><a class="l" href="#60"> 60: </a><span class="php-comment">         * @param string $sql stringa contenente la query
+</span></span><span id="61" class="l"><a class="l" href="#61"> 61: </a><span class="php-comment">         * @return array $result contiene il resultset
+</span></span><span id="62" class="l"><a class="l" href="#62"> 62: </a><span class="php-comment">         */</span>
+</span><span id="63" class="l"><a class="l" href="#63"> 63: </a>        <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> &amp;send_result_sql(<span class="php-var">$sql</span>){
+</span><span id="64" class="l"><a class="l" href="#64"> 64: </a>            <span class="php-comment">//Send a sql query that returns a result</span>
+</span><span id="65" class="l"><a class="l" href="#65"> 65: </a>            <span class="php-var">$stmt</span> = <span class="php-var">$this</span>-&gt;_conn-&gt;query(<span class="php-var">$sql</span>);
+</span><span id="66" class="l"><a class="l" href="#66"> 66: </a>            <span class="php-var">$res</span> = <span class="php-var">$stmt</span>-&gt;fetchAll(PDO::FETCH_ASSOC);
+</span><span id="67" class="l"><a class="l" href="#67"> 67: </a>            <span class="php-keyword1">return</span> <span class="php-var">$res</span>;
+</span><span id="68" class="l"><a class="l" href="#68"> 68: </a>        }
+</span><span id="69" class="l"><a class="l" href="#69"> 69: </a>
+</span><span id="70" class="l"><a class="l" href="#70"> 70: </a>        <span class="php-comment">/**
+</span></span><span id="71" class="l"><a class="l" href="#71"> 71: </a><span class="php-comment">         * Invia al db query di tipo comando e restituisce l'esito dell'esecuzione
+</span></span><span id="72" class="l"><a class="l" href="#72"> 72: </a><span class="php-comment">         * 
+</span></span><span id="73" class="l"><a class="l" href="#73"> 73: </a><span class="php-comment">         * @param string $sql
+</span></span><span id="74" class="l"><a class="l" href="#74"> 74: </a><span class="php-comment">         * @return array restituisce l'esito della query
+</span></span><span id="75" class="l"><a class="l" href="#75"> 75: </a><span class="php-comment">         */</span>
+</span><span id="76" class="l"><a class="l" href="#76"> 76: </a>        <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> &amp;send_command_sql(<span class="php-var">$sql</span>){
+</span><span id="77" class="l"><a class="l" href="#77"> 77: </a>            <span class="php-comment">//Send a sql command that returns the number of rows affected</span>
+</span><span id="78" class="l"><a class="l" href="#78"> 78: </a>            <span class="php-var">$af</span> = <span class="php-var">$this</span>-&gt;_conn-&gt;<span class="php-keyword2">exec</span>(<span class="php-var">$sql</span>);
+</span><span id="79" class="l"><a class="l" href="#79"> 79: </a>            <span class="php-var">$result</span>[<span class="php-quote">&quot;sql&quot;</span>] = <span class="php-var">$sql</span>;
+</span><span id="80" class="l"><a class="l" href="#80"> 80: </a>            <span class="php-var">$result</span>[<span class="php-quote">&quot;nbrows&quot;</span>] = <span class="php-var">$af</span>;
+</span><span id="81" class="l"><a class="l" href="#81"> 81: </a>            <span class="php-keyword1">return</span> <span class="php-var">$result</span>;
+</span><span id="82" class="l"><a class="l" href="#82"> 82: </a>        }
+</span><span id="83" class="l"><a class="l" href="#83"> 83: </a>    
+</span><span id="84" class="l"><a class="l" href="#84"> 84: </a>        <span class="php-comment">/**
+</span></span><span id="85" class="l"><a class="l" href="#85"> 85: </a><span class="php-comment">         * Restituisce l'ultimo id inserito
+</span></span><span id="86" class="l"><a class="l" href="#86"> 86: </a><span class="php-comment">         * @return mixed 
+</span></span><span id="87" class="l"><a class="l" href="#87"> 87: </a><span class="php-comment">         */</span>
+</span><span id="88" class="l"><a class="l" href="#88"> 88: </a>        <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_sql_insert_id" href="#_sql_insert_id">sql_insert_id</a>(){
+</span><span id="89" class="l"><a class="l" href="#89"> 89: </a>            <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;_conn-&gt;lastInsertId();
+</span><span id="90" class="l"><a class="l" href="#90"> 90: </a>        }
+</span><span id="91" class="l"><a class="l" href="#91"> 91: </a>    
+</span><span id="92" class="l"><a class="l" href="#92"> 92: </a>        <span class="php-comment">/**
+</span></span><span id="93" class="l"><a class="l" href="#93"> 93: </a><span class="php-comment">         * Formater for \' items
+</span></span><span id="94" class="l"><a class="l" href="#94"> 94: </a><span class="php-comment">         */</span>
+</span><span id="95" class="l"><a class="l" href="#95"> 95: </a>        <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_sql_format" href="#_sql_format">sql_format</a>(<span class="php-var">$data</span>){
+</span><span id="96" class="l"><a class="l" href="#96"> 96: </a>            <span class="php-comment">//When passing the data from a post form, the \' are already set, we will</span>
+</span><span id="97" class="l"><a class="l" href="#97"> 97: </a>            <span class="php-comment">//replace them with a system code, then replace the single ' by \' and re</span>
+</span><span id="98" class="l"><a class="l" href="#98"> 98: </a>            <span class="php-comment">//replace the old system code with \'</span>
+</span><span id="99" class="l"><a class="l" href="#99"> 99: </a>            <span class="php-var">$formateddata</span> = <span class="php-keyword2">str_replace</span>(<span class="php-quote">&quot;\'&quot;</span>, <span class="php-quote">&quot;@sc:bsqu@&quot;</span>, <span class="php-var">$data</span>);
+</span><span id="100" class="l"><a class="l" href="#100">100: </a>            <span class="php-var">$formateddata</span> = <span class="php-keyword2">str_replace</span>(<span class="php-quote">&quot;'&quot;</span>, <span class="php-quote">&quot;\'&quot;</span>, <span class="php-var">$formateddata</span>);
+</span><span id="101" class="l"><a class="l" href="#101">101: </a>            <span class="php-var">$formateddata</span> = <span class="php-keyword2">str_replace</span>(<span class="php-quote">&quot;@sc:bsqu@&quot;</span>, <span class="php-quote">&quot;\'&quot;</span>, <span class="php-var">$formateddata</span>);
+</span><span id="102" class="l"><a class="l" href="#102">102: </a>            <span class="php-keyword1">return</span> <span class="php-var">$formateddata</span>;
+</span><span id="103" class="l"><a class="l" href="#103">103: </a>        }
+</span><span id="104" class="l"><a class="l" href="#104">104: </a>    
+</span><span id="105" class="l"><a class="l" href="#105">105: </a></span>    }</code></pre>
+
+	<div id="footer">
+		HZGuestBook API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

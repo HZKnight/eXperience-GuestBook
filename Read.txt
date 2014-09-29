@@ -1,0 +1,45 @@
+
+				--------------------------------
+				http://www.shadows.sit.ac.in
+				--------------------------------
+
+shadows (gb) guestbook  v 1.0 :
+
+
+This script is coded by shadows Technical Team :
+By these people:
+harsha ,vishal,prabhakar
+---------------------------------------------------------------------------------------------------------------------------
+installation:
+
+This is a simple guestbook script coded using --> php
+1. create a folder by name: " guest"
+2.Go to smile.php change the path form /php/nazo ---> to  /guest/smile.php
+thatz it the guest book works smoothly
+
+important:
+
+3. By default three message are displayed perpage if you want to alter it 
+     --> go to view.php change find         "$display"   change  3  with  desired  number
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Features of this guestbook:
+
+1.This is the simple guest book it uses flat file to store data
+2.It checks for correct format of email and asks for all the feilds say name,email,place and message
+3.Html message are disabled
+4.smileys and emocations are enable
+3.next and previous links
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+your comments are most welcome:
+
+mail us to:
+
+shadowsdaily@yahoo.com
+nharsha@lycos.com
+vishalj4u@rediffmail.com
+prabhakaryb@yahoo.com

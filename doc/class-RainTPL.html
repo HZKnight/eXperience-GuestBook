@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class RainTPL | HZGuestBook</title>
+
+	<script type="text/javascript" src="resources/combined.js?2172775131"></script>
+	<script type="text/javascript" src="elementlist.js?2511054786"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li><a href="package-HZGuestBook.html">HZGuestBook<span></span></a>
+						<ul>
+				<li><a href="package-HZGuestBook.Env.html">Env</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="package-None.html">None</a>
+						</li>
+				<li><a href="package-PHP.html">PHP</a>
+						</li>
+				<li><a href="package-rubrica.html">rubrica</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-home.html">home</a></li>
+				<li class="active"><a href="class-RainTPL.html">RainTPL</a></li>
+				<li><a href="class-send.html">send</a></li>
+			</ul>
+
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-ConfigException.html">ConfigException</a></li>
+				<li><a href="class-RainTpl_Exception.html">RainTpl_Exception</a></li>
+				<li><a href="class-RainTpl_NotFoundException.html">RainTpl_NotFoundException</a></li>
+				<li><a href="class-RainTpl_SyntaxException.html">RainTpl_SyntaxException</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-None.html" title="Summary of None"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class RainTPL</h1>
+
+
+	<div class="description">
+	
+<p>RainTPL ------- Realized by Federico Ulfo &amp; maintained by the Rain Team
+Distributed under GNU/LGPL 3 License</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+				<b>Version:</b>
+				2.7.2<br />
+		<b>Located at</b> <a href="source-class-RainTPL.html#5-938" title="Go to source code">env/rain.tpl.class.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="assign" id="_assign">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_assign">#</a>
+		<code><a href="source-class-RainTPL.html#134-146" title="Go to source code">assign</a>( <span>mixed <var>$variable</var></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+		<div class="description short">
+			
+<p>Assign variable eg. $t-&gt;assign('name','mickey');</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Assign variable eg. $t-&gt;assign('name','mickey');</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$variable</var></dt>
+					<dd><code>mixed</code><br>$variable_name Name of template variable or associative array name/value</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value value assigned to this variable. Not set if variable_name is an
+associative array</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="draw" id="_draw">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_draw">#</a>
+		<code><a href="source-class-RainTPL.html#151-207" title="Go to source code">draw</a>( <span>string <var>$tpl_name</var></span>, <span>boolean <var>$return_string</var> = <span class="php-keyword1">false</span> </span> )</code>
+
+		<div class="description short">
+			
+<p>Draw the template eg. $html = $tpl-&gt;draw( 'demo', TRUE ); // return
+template in string or $tpl-&gt;draw( $tpl_name ); // echo the template</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Draw the template eg. $html = $tpl-&gt;draw( 'demo', TRUE ); // return
+template in string or $tpl-&gt;draw( $tpl_name ); // echo the template</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tpl_name</var></dt>
+					<dd><code>string</code><br>$tpl_name template to load</dd>
+					<dt><var>$return_string</var></dt>
+					<dd><code>boolean</code><br>$return_string true=return a string, false=echo the template</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="cache" id="_cache">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_cache">#</a>
+		<code><a href="source-class-RainTPL.html#212-232" title="Go to source code">cache</a>( <span>string <var>$tpl_name</var></span>, <span>integer <var>$expire_time</var> = <code><a href="class-RainTPL.html#CACHE_EXPIRE_TIME">RainTPL::<b>CACHE_EXPIRE_TIME</b></a></code></span>, <span>mixed <var>$cache_id</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+		<div class="description short">
+			
+<p>If exists a valid cache for this template it returns the cache</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>If exists a valid cache for this template it returns the cache</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tpl_name</var></dt>
+					<dd><code>string</code><br>$tpl_name Name of template (set the same of draw)</dd>
+					<dt><var>$expire_time</var></dt>
+					<dd><code>integer</code><br>$expiration_time Set after how many seconds the cache expire and must be
+regenerated</dd>
+					<dt><var>$cache_id</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>it return the HTML or null if the cache must be recreated<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="configure" id="_configure">
+
+		<td class="attributes"><code>
+			 public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_configure">#</a>
+		<code><a href="source-class-RainTPL.html#236-248" title="Go to source code">configure</a>( <span>mixed <var>$setting</var></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+		<div class="description short">
+			
+<p>Configure the settings of RainTPL</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Configure the settings of RainTPL</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="check_template" id="_check_template">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_check_template">#</a>
+		<code><a href="source-class-RainTPL.html#254-279" title="Go to source code">check_template</a>( <span>mixed <var>$tpl_name</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="xml_reSubstitution" id="_xml_reSubstitution">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_xml_reSubstitution">#</a>
+		<code><a href="source-class-RainTPL.html#282-288" title="Go to source code">xml_reSubstitution</a>( <span>mixed <var>$capture</var></span> )</code>
+
+		<div class="description short">
+			
+<p>execute stripslaches() on the xml block. Invoqued by preg_replace_callback
+function below</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>execute stripslaches() on the xml block. Invoqued by preg_replace_callback
+function below</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileFile" id="_compileFile">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileFile">#</a>
+		<code><a href="source-class-RainTPL.html#290-325" title="Go to source code">compileFile</a>( <span>mixed <var>$tpl_basename</var></span>, <span>mixed <var>$tpl_basedir</var></span>, <span>mixed <var>$tpl_filename</var></span>, <span>mixed <var>$cache_dir</var></span>, <span>mixed <var>$compiled_filename</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile and write the compiled template file</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile and write the compiled template file</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileTemplate" id="_compileTemplate">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileTemplate">#</a>
+		<code><a href="source-class-RainTPL.html#329-366" title="Go to source code">compileTemplate</a>( <span>mixed <var>$template_code</var></span>, <span>mixed <var>$tpl_basedir</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile template</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile template</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileCode" id="_compileCode">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileCode">#</a>
+		<code><a href="source-class-RainTPL.html#370-584" title="Go to source code">compileCode</a>( <span>mixed <var>$parsed_code</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile the code</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile the code</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="reduce_path" id="_reduce_path">
+
+		<td class="attributes"><code>
+			 protected 
+			type
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_reduce_path">#</a>
+		<code><a href="source-class-RainTPL.html#587-597" title="Go to source code">reduce_path</a>( <span>type <var>$path</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Reduce a path, eg. www/library/../filepath//file =&gt; www/filepath/file</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Reduce a path, eg. www/library/../filepath//file =&gt; www/filepath/file</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>type</code><br>$path</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>type</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="path_replace" id="_path_replace">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_path_replace">#</a>
+		<code><a href="source-class-RainTPL.html#601-652" title="Go to source code">path_replace</a>( <span>string <var>$html</var></span>, <span>mixed <var>$tpl_basedir</var></span> )</code>
+
+		<div class="description short">
+			
+<p>replace the path of image src, link href and a href. url =&gt;
+template_dir/url url# =&gt; url <a href="http://url">http://url</a> =&gt; <a
+href="http://url">http://url</a></p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>replace the path of image src, link href and a href. url =&gt;
+template_dir/url url# =&gt; url <a href="http://url">http://url</a> =&gt; <a
+href="http://url">http://url</a></p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$html</var></dt>
+					<dd><code>string</code><br>$html</dd>
+					<dt><var>$tpl_basedir</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>html sostituito<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="const_replace" id="_const_replace">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_const_replace">#</a>
+		<code><a href="source-class-RainTPL.html#659-662" title="Go to source code">const_replace</a>( <span>mixed <var>$html</var></span>, <span>mixed <var>$tag_left_delimiter</var></span>, <span>mixed <var>$tag_right_delimiter</var></span>, <span>mixed <var>$php_left_delimiter</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$php_right_delimiter</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$loop_level</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$echo</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="func_replace" id="_func_replace">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_func_replace">#</a>
+		<code><a href="source-class-RainTPL.html#667-762" title="Go to source code">func_replace</a>( <span>mixed <var>$html</var></span>, <span>mixed <var>$tag_left_delimiter</var></span>, <span>mixed <var>$tag_right_delimiter</var></span>, <span>mixed <var>$php_left_delimiter</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$php_right_delimiter</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$loop_level</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$echo</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="var_replace" id="_var_replace">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_var_replace">#</a>
+		<code><a href="source-class-RainTPL.html#766-872" title="Go to source code">var_replace</a>( <span>mixed <var>$html</var></span>, <span>mixed <var>$tag_left_delimiter</var></span>, <span>mixed <var>$tag_right_delimiter</var></span>, <span>mixed <var>$php_left_delimiter</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$php_right_delimiter</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$loop_level</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$echo</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="function_check" id="_function_check">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_function_check">#</a>
+		<code><a href="source-class-RainTPL.html#876-902" title="Go to source code">function_check</a>( <span>string <var>$code</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Check if function is in black list (sandbox)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Check if function is in black list (sandbox)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$code</var></dt>
+					<dd><code>string</code><br>$code</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="printDebug" id="_printDebug">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_printDebug">#</a>
+		<code><a href="source-class-RainTPL.html#904-937" title="Go to source code">printDebug</a>( <span><code><a href="class-RainTpl_Exception.html">RainTpl_Exception</a></code> <var>$e</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Prints debug info about exception or passes it further if debug is
+disabled.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Prints debug info about exception or passes it further if debug is
+disabled.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$e</var></dt>
+					<dd><code><code><a href="class-RainTpl_Exception.html">RainTpl_Exception</a></code></code><br>$e</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+	<table class="summary" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="CACHE_EXPIRE_TIME" id="CACHE_EXPIRE_TIME">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="source-class-RainTPL.html#129" title="Go to source code"><b>CACHE_EXPIRE_TIME</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">3600</span></code></td>
+		<td class="description"><div>
+			<a href="#CACHE_EXPIRE_TIME" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="tpl_dir" id="$tpl_dir">
+		<td class="attributes"><code>
+			public static 
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RainTPL.html#19-24" title="Go to source code"><var>$tpl_dir</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">&quot;tpl/&quot;</span></code></td>
+		<td class="description"><div>
+			<a href="#$tpl_dir" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Template directory</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Template directory</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="cache_dir" id="$cache_dir">
+		<td class="attributes"><code>
+			public static 
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RainTPL.html#27-32" title="Go to source code"><var>$cache_dir</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">&quot;tmp/&quot;</span></code></td>
+		<td class="description"><div>
+			<a href="#$cache_dir" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Cache directory. Is the directory where RainTPL will compile the template and
+save the cache</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Cache directory. Is the directory where RainTPL will compile the template and
+save the cache</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="base_url" id="$base_url">
+		<td class="attributes"><code>
+			public static 
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RainTPL.html#35-40" title="Go to source code"><var>$base_url</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$base_url" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Template base URL. RainTPL will add this URL to the relative paths of element
+selected in $path_replace_list.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Template base URL. RainTPL will add this URL to the relative paths of element
+selected in $path_replace_list.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="tpl_ext" id="$tpl_ext">
+		<td class="attributes"><code>
+			public static 
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RainTPL.html#43-48" title="Go to source code"><var>$tpl_ext</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">&quot;html&quot;</span></code></td>
+		<td class="description"><div>
+			<a href="#$tpl_ext" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Template extension.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Template extension.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="path_replace" id="$path_replace">
+		<td class="attributes"><code>
+			public static 
+			unknown_type
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RainTPL.html#51-57" title="Go to source code"><var>$path_replace</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">true</span></code></td>
+		<td class="description"><div>
+			<a href="#$path_replace" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Path replace is a cool features that replace all relative paths of images
+(&lt;img src="..."&gt;), stylesheet (&lt;link href="..."&gt;), script
+(&lt;script src="..."&gt;) and link (<a href="...">) Set true to enable the path
+replace.</a></p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Path replace is a cool features that replace all relative paths of images
+(&lt;img src="..."&gt;), stylesheet (&lt;link href="..."&gt;), script
+(&lt;script src="..."&gt;) and link (<a href="...">) Set true to enable the path
+replace.</a></p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="path_replace_list" id="$path_replace_list">
+		<td class="attributes"><code>
+			public static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RainTPL.html#60-66" title="Go to source code"><var>$path_replace_list</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>( <span class="php-quote">'a'</span>, <span class="php-quote">'img'</span>, <span class="php-quote">'link'</span>, <span class="php-quote">'script'</span>, <span class="php-quote">'input'</span> )</code></td>
+		<td class="description"><div>
+			<a href="#$path_replace_list" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>You can set what the path_replace method will replace. Avaible options: a,
+img, link, script, input</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>You can set what the path_replace method will replace. Avaible options: a,
+img, link, script, input</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="black_list" id="$black_list">
+		<td class="attributes"><code>
+			public static 
+			unknown_type
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RainTPL.html#69-74" title="Go to source code"><var>$black_list</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>( <span class="php-quote">'\$this'</span>, <span class="php-quote">'raintpl::'</span>, <span class="php-quote">'self::'</span>, <span class="php-quote">'_SESSION'</span>, <span class="php-quote">'_SERVER'</span>, <span class="php-quote">'_ENV'</span>,  <span class="php-quote">'eval'</span>, <span class="php-quote">'exec'</span>, <span class="php-quote">'unlink'</span>, <span class="php-quote">'rmdir'</span> )</code></td>
+		<td class="description"><div>
+			<a href="#$black_list" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>You can define in the black list what string are disabled into the template
+tags</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>You can define in the black list what string are disabled into the template
+tags</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="check_template_update" id="$check_template_update">
+		<td class="attributes"><code>
+			public static 
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RainTPL.html#77-83" title="Go to source code"><var>$check_template_update</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">true</span></code></td>
+		<td class="description"><div>
+			<a href="#$check_template_update" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Check template. true: checks template update time, if changed it compile them
+false: loads the compiled template. Set false if server doesn't have write
+permission for cache_directory.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Check template. true: checks template update time, if changed it compile them
+false: loads the compiled template. Set false if server doesn't have write
+permission for cache_directory.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="php_enabled" id="$php_enabled">
+		<td class="attributes"><code>
+			public static 
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RainTPL.html#86-93" title="Go to source code"><var>$php_enabled</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">false</span></code></td>
+		<td class="description"><div>
+			<a href="#$php_enabled" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>PHP tags &lt;? ?&gt; True: php tags are enabled into the template False: php
+tags are disabled into the template and rendered as html</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>PHP tags &lt;? ?&gt; True: php tags are enabled into the template False: php
+tags are disabled into the template and rendered as html</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="debug" id="$debug">
+		<td class="attributes"><code>
+			public static 
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RainTPL.html#96-103" title="Go to source code"><var>$debug</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">false</span></code></td>
+		<td class="description"><div>
+			<a href="#$debug" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Debug mode flag. True: debug mode is used, syntax errors are displayed
+directly in template. Execution of script is not terminated. False: exception is
+thrown on found error.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Debug mode flag. True: debug mode is used, syntax errors are displayed
+directly in template. Execution of script is not terminated. False: exception is
+thrown on found error.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="var" id="$var">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RainTPL.html#112-117" title="Go to source code"><var>$var</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$var" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Is the array where RainTPL keep the variables assigned</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Is the array where RainTPL keep the variables assigned</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="tpl" id="$tpl">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RainTPL.html#119" title="Go to source code"><var>$tpl</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$tpl" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="cache" id="$cache">
+		<td class="attributes"><code>
+			protected  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RainTPL.html#120" title="Go to source code"><var>$cache</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">false</span></code></td>
+		<td class="description"><div>
+			<a href="#$cache" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="cache_id" id="$cache_id">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RainTPL.html#121" title="Go to source code"><var>$cache_id</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$cache_id" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="config_name_sum" id="$config_name_sum">
+		<td class="attributes"><code>
+			protected static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RainTPL.html#123" title="Go to source code"><var>$config_name_sum</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$config_name_sum" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		HZGuestBook API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

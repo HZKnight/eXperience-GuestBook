@@ -1,0 +1,20 @@
+{
+    "version": "0.0.1-Alfa",
+    "lang": "it_IT",
+    
+    "display_msg": 4,
+    
+    "database": {
+       "type": "mysql",
+       "host": "localhost",
+       "db": "hzsystem",
+       "uname": "root",
+       "passwd": "miotuo"
+    },
+    
+    "admin-pass": "miotuo",
+    
+    "title": ".:: H0Model.Org ::.",
+    "slogan": "Un viaggio nel mondo del modellismo ferroviario",
+    "copyright": "HZKnight"
+}

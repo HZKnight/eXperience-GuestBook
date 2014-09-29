@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+	<meta name="robots" content="noindex" />
+
+	<title>File env/controller.class.php | HZGuestBook</title>
+
+	<script type="text/javascript" src="resources/combined.js?2172775131"></script>
+	<script type="text/javascript" src="elementlist.js?2511054786"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li><a href="package-HZGuestBook.html">HZGuestBook<span></span></a>
+						<ul>
+				<li><a href="package-HZGuestBook.Env.html">Env</a>
+						</li>
+							</ul></li>
+				<li><a href="package-None.html">None</a>
+						</li>
+				<li><a href="package-PHP.html">PHP</a>
+						</li>
+				<li class="active"><a href="package-rubrica.html">rubrica</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Controller.html">Controller</a></li>
+				<li class="active"><a href="class-Result.html">Result</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-rubrica.html" title="Summary of rubrica"><span>Package</span></a>
+			</li>
+			<li>
+				<a href="class-Result.html" title="Summary of Result"><span>Class</span></a>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<pre><code><span id="1" class="l"><a class="l" href="#1">  1: </a><span class="xlang">&lt;?php</span>
+</span><span id="2" class="l"><a class="l" href="#2">  2: </a><span class="php-comment">/**     
+</span></span><span id="3" class="l"><a class="l" href="#3">  3: </a><span class="php-comment"> *      --------------------------------------------------------------------
+</span></span><span id="4" class="l"><a class="l" href="#4">  4: </a><span class="php-comment"> *      HZCms
+</span></span><span id="5" class="l"><a class="l" href="#5">  5: </a><span class="php-comment"> *      --------------------------------------------------------------------
+</span></span><span id="6" class="l"><a class="l" href="#6">  6: </a><span class="php-comment"> *      File: controller.class.php
+</span></span><span id="7" class="l"><a class="l" href="#7">  7: </a><span class="php-comment"> *      Description: controller dell'applicazione
+</span></span><span id="8" class="l"><a class="l" href="#8">  8: </a><span class="php-comment"> *      
+</span></span><span id="9" class="l"><a class="l" href="#9">  9: </a><span class="php-comment"> *      @author Luca Liscio &amp; Marco Lettiri
+</span></span><span id="10" class="l"><a class="l" href="#10"> 10: </a><span class="php-comment"> *      @version $Id: controller.class.php,v 2.0 2008/06/30 12:03:20
+</span></span><span id="11" class="l"><a class="l" href="#11"> 11: </a><span class="php-comment"> *      @package rubrica
+</span></span><span id="12" class="l"><a class="l" href="#12"> 12: </a><span class="php-comment"> *      --------------------------------------------------------------------
+</span></span><span id="13" class="l"><a class="l" href="#13"> 13: </a><span class="php-comment"> *      
+</span></span><span id="14" class="l"><a class="l" href="#14"> 14: </a><span class="php-comment"> *      Copyright 2008 Luca Liscio &amp; Marco Lettieri 
+</span></span><span id="15" class="l"><a class="l" href="#15"> 15: </a><span class="php-comment"> *      
+</span></span><span id="16" class="l"><a class="l" href="#16"> 16: </a><span class="php-comment"> *      This program is free software; you can redistribute it and/or modify
+</span></span><span id="17" class="l"><a class="l" href="#17"> 17: </a><span class="php-comment"> *      it under the terms of the GNU General Public License as published by
+</span></span><span id="18" class="l"><a class="l" href="#18"> 18: </a><span class="php-comment"> *      the Free Software Foundation; either version 2 of the License, or
+</span></span><span id="19" class="l"><a class="l" href="#19"> 19: </a><span class="php-comment"> *      (at your option) any later version.
+</span></span><span id="20" class="l"><a class="l" href="#20"> 20: </a><span class="php-comment"> *      
+</span></span><span id="21" class="l"><a class="l" href="#21"> 21: </a><span class="php-comment"> *      This program is distributed in the hope that it will be useful,
+</span></span><span id="22" class="l"><a class="l" href="#22"> 22: </a><span class="php-comment"> *      but WITHOUT ANY WARRANTY; without even the implied warranty of
+</span></span><span id="23" class="l"><a class="l" href="#23"> 23: </a><span class="php-comment"> *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+</span></span><span id="24" class="l"><a class="l" href="#24"> 24: </a><span class="php-comment"> *      GNU General Public License for more details.
+</span></span><span id="25" class="l"><a class="l" href="#25"> 25: </a><span class="php-comment"> *      
+</span></span><span id="26" class="l"><a class="l" href="#26"> 26: </a><span class="php-comment"> *      You should have received a copy of the GNU General Public License
+</span></span><span id="27" class="l"><a class="l" href="#27"> 27: </a><span class="php-comment"> *      along with this program; if not, write to the Free Software
+</span></span><span id="28" class="l"><a class="l" href="#28"> 28: </a><span class="php-comment"> *      Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+</span></span><span id="29" class="l"><a class="l" href="#29"> 29: </a><span class="php-comment"> *      MA 02110-1301, USA.
+</span></span><span id="30" class="l"><a class="l" href="#30"> 30: </a><span class="php-comment"> */</span>
+</span><span id="31" class="l"><a class="l" href="#31"> 31: </a> 
+</span><span id="32" class="l"><a class="l" href="#32"> 32: </a>    <span class="php-keyword2">session_start</span>();    
+</span><span id="33" class="l"><a class="l" href="#33"> 33: </a> 
+</span><span id="34" class="l"><a class="l" href="#34"> 34: </a>    <span class="php-keyword1">class</span> <a id="Controller" href="#Controller">Controller</a> {
+</span><span id="35" class="l"><a class="l" href="#35"> 35: </a>    
+</span><span id="36" class="l"><a class="l" href="#36"> 36: </a>        <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_doService" href="#_doService">doService</a>(HttpRequest <span class="php-var">$request</span>) {
+</span><span id="37" class="l"><a class="l" href="#37"> 37: </a>            <span class="php-keyword1">global</span> <span class="php-var">$db</span>, <span class="php-var">$config</span>, <span class="php-var">$view</span>;
+</span><span id="38" class="l"><a class="l" href="#38"> 38: </a>            
+</span><span id="39" class="l"><a class="l" href="#39"> 39: </a>            <span class="php-var">$start</span> = <span class="php-keyword2">microtime</span>();
+</span><span id="40" class="l"><a class="l" href="#40"> 40: </a>            
+</span><span id="41" class="l"><a class="l" href="#41"> 41: </a>            <span class="php-var">$jobName</span> = <span class="php-var">$request</span>-&gt;getParam(<span class="php-quote">'job'</span>);
+</span><span id="42" class="l"><a class="l" href="#42"> 42: </a>
+</span><span id="43" class="l"><a class="l" href="#43"> 43: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$jobName</span> == <span class="php-quote">''</span>) {
+</span><span id="44" class="l"><a class="l" href="#44"> 44: </a>                <span class="php-var">$jobName</span> = <span class="php-quote">&quot;home&quot;</span>;
+</span><span id="45" class="l"><a class="l" href="#45"> 45: </a>            }
+</span><span id="46" class="l"><a class="l" href="#46"> 46: </a>                    
+</span><span id="47" class="l"><a class="l" href="#47"> 47: </a>            <span class="php-var">$jobClassFileName</span> = <span class="php-keyword2">explode</span>(<span class="php-quote">&quot;env&quot;</span>,<span class="php-keyword2">dirname</span>(__FILE__))[<span class="php-num">0</span>].<span class="php-quote">&quot;/job/&quot;</span>.<span class="php-var">$jobName</span>.<span class="php-quote">&quot;.class.php&quot;</span>;
+</span><span id="48" class="l"><a class="l" href="#48"> 48: </a>                           
+</span><span id="49" class="l"><a class="l" href="#49"> 49: </a>            <span class="php-keyword1">if</span>(!<span class="php-keyword2">class_exists</span>(<span class="php-var">$jobName</span>)){
+</span><span id="50" class="l"><a class="l" href="#50"> 50: </a>                <span class="php-keyword1">if</span> (<span class="php-keyword2">file_exists</span>(<span class="php-var">$jobClassFileName</span>)){
+</span><span id="51" class="l"><a class="l" href="#51"> 51: </a>                    <span class="php-keyword1">require_once</span>(<span class="php-var">$jobClassFileName</span>);
+</span><span id="52" class="l"><a class="l" href="#52"> 52: </a>                } <span class="php-keyword1">else</span> {
+</span><span id="53" class="l"><a class="l" href="#53"> 53: </a>                    <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> RuntimeException(<span class="php-quote">&quot;Sul disco manca il file con la definizione dell'azione '</span><span class="php-var">$jobClassFileName</span><span class="php-quote">'&quot;</span>);
+</span><span id="54" class="l"><a class="l" href="#54"> 54: </a>                }
+</span><span id="55" class="l"><a class="l" href="#55"> 55: </a>            }
+</span><span id="56" class="l"><a class="l" href="#56"> 56: </a>                
+</span><span id="57" class="l"><a class="l" href="#57"> 57: </a>            <span class="php-var">$jobClass</span> = <span class="php-keyword1">new</span> <span class="php-var">$jobName</span>();
+</span><span id="58" class="l"><a class="l" href="#58"> 58: </a>                    
+</span><span id="59" class="l"><a class="l" href="#59"> 59: </a>            <span class="php-var">$res</span> = <span class="php-var">$jobClass</span>-&gt;doAction(<span class="php-var">$request</span>);
+</span><span id="60" class="l"><a class="l" href="#60"> 60: </a>            
+</span><span id="61" class="l"><a class="l" href="#61"> 61: </a>            <span class="php-var">$view</span>-&gt;assign(<span class="php-quote">&quot;content&quot;</span>, <span class="php-var">$res</span>);
+</span><span id="62" class="l"><a class="l" href="#62"> 62: </a>            <span class="php-var">$view</span>-&gt;assign(<span class="php-quote">&quot;copy&quot;</span>,<span class="php-var">$config</span>-&gt;get_param(<span class="php-quote">'copyright'</span>));
+</span><span id="63" class="l"><a class="l" href="#63"> 63: </a>            
+</span><span id="64" class="l"><a class="l" href="#64"> 64: </a>            <span class="php-var">$view</span>-&gt;assign(<span class="php-quote">&quot;time&quot;</span>, <span class="php-keyword2">microtime</span>()-<span class="php-var">$start</span>);
+</span><span id="65" class="l"><a class="l" href="#65"> 65: </a>            
+</span><span id="66" class="l"><a class="l" href="#66"> 66: </a>            <span class="php-var">$view</span>-&gt;draw(<span class="php-quote">&quot;main&quot;</span>);
+</span><span id="67" class="l"><a class="l" href="#67"> 67: </a>                
+</span><span id="68" class="l"><a class="l" href="#68"> 68: </a>            <span class="php-comment">//   error_log(&quot;[&quot;.date(&quot;F j, Y, g:i a&quot;).&quot;]-[Exception]-&quot;.$e-&gt;getMessage().&quot; --&gt; &quot;.$e-&gt;getTraceAsString().&quot;\n&quot;,3,&quot;/home/luca/www/www/rubrica1/log/error.log&quot;);</span>
+</span><span id="69" class="l"><a class="l" href="#69"> 69: </a>
+</span><span id="70" class="l"><a class="l" href="#70"> 70: </a>        }
+</span><span id="71" class="l"><a class="l" href="#71"> 71: </a>    
+</span><span id="72" class="l"><a class="l" href="#72"> 72: </a>            
+</span><span id="73" class="l"><a class="l" href="#73"> 73: </a>        <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> <a id="_makeSecure" href="#_makeSecure">makeSecure</a>(<span class="php-var">$job</span>, <span class="php-var">$request</span>){
+</span><span id="74" class="l"><a class="l" href="#74"> 74: </a>            <span class="php-keyword1">if</span>(((<span class="php-var">$_SESSION</span>[<span class="php-quote">'zope_vars'</span>][AUTHENTICATED_USER]!=<span class="php-quote">'root'</span>) <span class="php-keyword1">and</span> (<span class="php-var">$_SESSION</span>[<span class="php-quote">'zope_vars'</span>][AUTHENTICATED_USER]!=<span class="php-quote">'gnapoli'</span>)) <span class="php-keyword1">and</span> (<span class="php-var">$job</span>-&gt;requireLogin)){
+</span><span id="75" class="l"><a class="l" href="#75"> 75: </a>                <span class="php-keyword2">header</span>(<span class="php-quote">'Location: http://www.scienzemfn.unisa.it/facolta/login_form'</span>);
+</span><span id="76" class="l"><a class="l" href="#76"> 76: </a>            }
+</span><span id="77" class="l"><a class="l" href="#77"> 77: </a>            <span class="php-keyword1">else</span>
+</span><span id="78" class="l"><a class="l" href="#78"> 78: </a>            {
+</span><span id="79" class="l"><a class="l" href="#79"> 79: </a>                <span class="php-keyword1">if</span> (<span class="php-var">$request</span>-&gt;getParam(<span class="php-quote">'job'</span>) != <span class="php-quote">'RecordExist'</span>){    
+</span><span id="80" class="l"><a class="l" href="#80"> 80: </a>                    <span class="php-keyword1">echo</span> <span class="php-quote">'&lt;div id=&quot;region-content&quot; class=&quot;documentContent&quot;&gt;'</span>;
+</span><span id="81" class="l"><a class="l" href="#81"> 81: </a>                    <span class="php-keyword1">if</span> ((<span class="php-var">$request</span>-&gt;getParam(<span class="php-quote">'job'</span>)!=<span class="php-quote">''</span>) <span class="php-keyword1">and</span> (<span class="php-var">$request</span>-&gt;getParam(<span class="php-quote">'job'</span>)!=<span class="php-quote">'Admin'</span>) <span class="php-keyword1">and</span> (<span class="php-var">$job</span>-&gt;requireLogin))
+</span><span id="82" class="l"><a class="l" href="#82"> 82: </a>                    {
+</span><span id="83" class="l"><a class="l" href="#83"> 83: </a>                        <span class="php-keyword1">echo</span> <span class="php-quote">' &lt;p align=&quot;right&quot; style=&quot;border:1px dotted lightgrey; font-size:10px;&quot;&gt;
+</span></span><span id="84" class="l"><a class="l" href="#84"> 84: </a><span class="php-quote">                                        &lt;a href = &quot;rubrica/iview/?job=Admin&quot;&gt;&lt;b&gt;Amministrazione&lt;/b&gt;&lt;/a&gt;
+</span></span><span id="85" class="l"><a class="l" href="#85"> 85: </a><span class="php-quote">                                    &lt;/p&gt;'</span>;
+</span><span id="86" class="l"><a class="l" href="#86"> 86: </a>                    
+</span><span id="87" class="l"><a class="l" href="#87"> 87: </a>                        <span class="php-var">$job</span>-&gt;doAction(<span class="php-var">$request</span>);
+</span><span id="88" class="l"><a class="l" href="#88"> 88: </a>                        
+</span><span id="89" class="l"><a class="l" href="#89"> 89: </a>                        <span class="php-keyword1">echo</span> <span class="php-quote">' &lt;p align=&quot;right&quot; style=&quot;border:1px dotted lightgrey; font-size:10px;&quot;&gt;
+</span></span><span id="90" class="l"><a class="l" href="#90"> 90: </a><span class="php-quote">                                        &lt;a href = &quot;rubrica/iview/?job=Admin&quot;&gt;&lt;b&gt;Amministrazione&lt;/b&gt;&lt;/a&gt;
+</span></span><span id="91" class="l"><a class="l" href="#91"> 91: </a><span class="php-quote">                                    &lt;/p&gt;'</span>;
+</span><span id="92" class="l"><a class="l" href="#92"> 92: </a>                    }
+</span><span id="93" class="l"><a class="l" href="#93"> 93: </a>                    <span class="php-keyword1">else</span>
+</span><span id="94" class="l"><a class="l" href="#94"> 94: </a>                    {
+</span><span id="95" class="l"><a class="l" href="#95"> 95: </a>                        <span class="php-var">$job</span>-&gt;doAction(<span class="php-var">$request</span>);
+</span><span id="96" class="l"><a class="l" href="#96"> 96: </a>                    }
+</span><span id="97" class="l"><a class="l" href="#97"> 97: </a>                    <span class="php-keyword1">echo</span> <span class="php-quote">'&lt;/div&gt;'</span>;
+</span><span id="98" class="l"><a class="l" href="#98"> 98: </a>                }
+</span><span id="99" class="l"><a class="l" href="#99"> 99: </a>                <span class="php-keyword1">else</span>
+</span><span id="100" class="l"><a class="l" href="#100">100: </a>                    <span class="php-var">$job</span>-&gt;doAction(<span class="php-var">$request</span>); <span class="php-comment">//job invocati tramite ajax</span>
+</span><span id="101" class="l"><a class="l" href="#101">101: </a>            }
+</span><span id="102" class="l"><a class="l" href="#102">102: </a>        }
+</span><span id="103" class="l"><a class="l" href="#103">103: </a>    }
+</span><span id="104" class="l"><a class="l" href="#104">104: </a>
+</span><span id="105" class="l"><a class="l" href="#105">105: </a>    <span class="php-keyword1">class</span> <a id="Result" href="#Result">Result</a> {
+</span><span id="106" class="l"><a class="l" href="#106">106: </a>        <span class="php-keyword1">public</span> <span class="php-var"><a id="$data" href="#$data">$data</a></span>=<span class="php-quote">&quot;&quot;</span>;
+</span><span id="107" class="l"><a class="l" href="#107">107: </a>        <span class="php-keyword1">public</span> <span class="php-var"><a id="$tpl" href="#$tpl">$tpl</a></span>=<span class="php-quote">&quot;&quot;</span>;
+</span><span id="108" class="l"><a class="l" href="#108">108: </a>    }
+</span><span id="109" class="l"><a class="l" href="#109">109: </a>    
+</span><span id="110" class="l"><a class="l" href="#110">110: </a><span class="xlang">?&gt;</span>
+</span><span id="111" class="l"><a class="l" href="#111">111: </a></span></code></pre>
+
+	<div id="footer">
+		HZGuestBook API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>
