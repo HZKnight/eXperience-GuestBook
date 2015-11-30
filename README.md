@@ -1,4 +1,4 @@
-hzguestbook
+HZGuestBook
 ===========
 
 A small PHP Guestbook
