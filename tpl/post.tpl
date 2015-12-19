@@ -20,8 +20,11 @@
                 </td>
             </tr>
         </table>
-        <br>
+        <br/>
+        <div id="annuncio">
          {$announce}
+        </div>
+        <br/>
         <table width="760px" align="center" border="0" cellpadding="0" cellspacing="0" >
             <tr>
                 <td width=33% bgcolor=#85b0e4 height=16 align='left'>{$prev}</td>
@@ -42,15 +45,15 @@
                                 <td>
                                     <table class=msg  width='100%' valign=top align=center  cellpadding=2 cellspacing=0>
                                         <tr>
-                                            <td width="50%" bgcolor=#a4d3ff><b>Messaggio inviato da:</b>&nbsp;{$value.1}</td>
-                                            <td width="50%" bgcolor=#a4d3ff><b>E-mail:</b>&nbsp;{$value.2}</td>
+                                            <td width="50%" bgcolor=#a4d3ff><img src="../img/user.png" alt="Messaggio inviato da:"/>&nbsp;<b>{$value.nick}</b></td>
+                                            <td width="50%" bgcolor=#a4d3ff style="text-align: right;">{$value.data}&nbsp;<img src="../img/calendar.png" alt="Inviato il:"/></td>
                                         </tr>
                                         <tr>
-                                            <td colspan=2 align=justify bgcolor=#d6e9fc><b>Messaggio:</b><p class=margin>{$value.3}</p></td>
+                                            <td colspan=2 align=justify bgcolor=#d6e9fc><p class=margin>{$value.messaggio}</p></td>
                                         </tr>
                                         <tr>
-                                            <td bgcolor=#c6e1fb><b>Nazione:</b>&nbsp;{$value.4}</td>
-                                            <td bgcolor=#c6e1fb><b>Inviato il:</b>&nbsp;{$value.0}</td>
+                                            <td bgcolor=#c6e1fb></td>
+                                            <td bgcolor=#c6e1fb style="text-align: right;">{if="$value.nazione <> ''"}<img src="../img/nation.png" alt="Nazione:" title="{$value.nazione}"/>{/if}{if="$value.mail <> ''"}<img src="../img/mail.png" alt="E-mail:" title="{$value.mail}"/>{/if}</td>
                                         </tr>
                                     </table>    
                                 </td>

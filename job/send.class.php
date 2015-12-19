@@ -32,28 +32,15 @@ class send {
              $info = $this->validateData($request);
              
              if ($info == "OK"){
+
+                 $sql = 'insert into $guestbook_post (nick,mail,nazione,messaggio,data) values (\''.
+                         $request->getParam('name').'\',\''.
+                         $request->getParam('email').'\',\''.
+                         ucfirst($request->getParam('place')).'\',\''.
+                         ucfirst($this->formatMessage($request->getParam('message'))).'\',\''.
+                         date("d.F.Y").'\')';
                  
-                 $fp = fopen('data.htm','a');
-                 
-                 if(!$fp)
-                 {
-                     $info.= "Non &egrave; stato possibile salvare il tuo messaggio<br>ci scusiamo per l'nconveniente!!!<br>Errore di apertura del file!";
-                     exit;
-                 }
-                 
-                 $line = date("d.F.Y") . "#" . $request->getParam('name');
-                 $line .= "#" . $request->getParam('email');
-                 $line .= "#" . ucfirst($this->formatMessage($request->getParam('message')));
-                 $line .= "#" . ucfirst($request->getParam('place'));
-                 $line = str_replace("\r\n","<BR>",$line);
-                 $line .= "\r\n";
-                 fwrite($fp, $line);
-                 
-                 if(!fclose($fp))
-                 {
-                     $info.= "Errore di chisura file!";
-                     exit;
-                 }
+                 $db->doUpdate($sql);
                  
                  $info = "<center><font color='green' size='1'>Grazie per aver lasciato un messaggio nel GuestBook!!<br>Messaggio inserito correttamente!</font>";
                     
@@ -151,44 +138,9 @@ class send {
              
          }
 	
-         $message = $this->smile($message);
+         //$message = $this->smile($message);
          
          return $message."<br><br>";
      }
      
-     private function smile ($message){
-         $message = str_replace(":)","<img src='img/smile.png'>",$message);
-         $message = str_replace(":-D","<img src='img/bigsmile.png'>",$message);
-         $message = str_replace(":-O","<img src='img/omg.png'>",$message);
-         $message = str_replace(":P","<img src='img/toung.png'>",$message);
-         $message = str_replace(";)","<img src='img/wink.png'>",$message);
-         $message = str_replace(":(","<img src='img/sad_smile.png'>",$message);
-         $message = str_replace(":-S","<img src='img/confused.png'>",$message);
-         $message = str_replace(":|","<img src='img/what_smile.png'>",$message);
-         
-         $message = str_replace(":_(","<img src='img/cry_smile.png'>",$message);
-         $message = str_replace(":-$","<img src='img/red_smile.png'>",$message);
-         $message = str_replace("(H)","<img src='img/shades_smile.png'>",$message);
-         $message = str_replace(":-@","<img src='img/angry_smile.png'>",$message);
-         $message = str_replace(":-#","<img src='img/47_47.png'>",$message);
-         $message = str_replace("8o|","<img src='img/48_48.png'>",$message);
-         $message = str_replace("8-|","<img src='img/49_49.png'>",$message);
-         $message = str_replace("^o)","<img src='img/50_50.png'>",$message);
-	
-         $message = str_replace("+o(","<img src='img/52_52.png'>",$message);
-         $message = str_replace(":^|","<img src='img/71_71.png'>",$message);
-         $message = str_replace("*-)","<img src='img/72_72.png'>",$message);
-         $message = str_replace("8-)","<img src='img/75_75.png'>",$message);
-         $message = str_replace("|-)","<img src='img/77_77.png'>",$message);
-         $message = str_replace("(A)","<img src='img/angel_smile.png'>",$message);
-         $message = str_replace("(6)","<img src='img/devil_smile.png'>",$message);
-         $message = str_replace(":-*","<img src='img/51_51.png'>",$message);
-         
-         $message = str_replace("<:o)","<img src='img/74_74.png'>",$message);
-         $message = str_replace("(@)","<img src='img/cat.png'>",$message);
-         $message = str_replace("(&)","<img src='img/dog.png'>",$message);
-         $message = str_replace("(S)","<img src='img/moon.png'>",$message);
-         
-         return $message;
-     }
-}
+   }

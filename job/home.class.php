@@ -35,14 +35,16 @@ class home {
         }
     
         // create an array of data
-        $myArray = file("data.htm");
+        $sql = 'select * from $guestbook_post';
+        $myArray = $db->doQuery($sql);
+        
         $s=sizeof($myArray);
         
         $nummsg = count($myArray);
         
         // reverse the order of the data
         $myArray = array_reverse($myArray);
-
+       
         //Caricamento messaggio di ben venuto
         $ben = file("data1.htm");
 
@@ -60,6 +62,7 @@ class home {
         if ($page==$p) $dirplay++;
 
         $news = array_slice($myArray, $start, $display--);
+        
         $end=$display*$page;
 
         if ($start != '0') {
@@ -69,7 +72,7 @@ class home {
             $prev="";
         }
         
-        if ($end < $s) {
+        if ($page != $p) {
             $new_page1=$page+1;
             $next="<a href='index.php?page=$new_page1'>Successiva >></a>";
         } else {
@@ -85,7 +88,7 @@ class home {
 
         // printing the data
         $new1=explode("#","$ben[0]");
-        
+              
         $view->assign("announce", $new1[3]);
         $view->assign("num_mex", $nummsg);
         $view->assign("num_pages", $p);
@@ -95,14 +98,49 @@ class home {
 
         $posts = array();
         
-        foreach($news as $value)
-        {
-            $new=explode("#","$value");
-            $posts[]=$new;
+        //sostituisco gli smile
+        for ($i=0;$i<$s;$i++){
+            $news[$i]['messaggio'] = $this->smile($news[$i]['messaggio']);
         }
         
-        $view->assign("posts", $posts);
+        $view->assign("posts", $news);
         
         return $view->draw("post", true); 
     }
+    
+      private function smile ($message){
+         $message = str_replace(":)","<img src='img/smile.png'>",$message);
+         $message = str_replace(":-D","<img src='img/bigsmile.png'>",$message);
+         $message = str_replace(":-O","<img src='img/omg.png'>",$message);
+         $message = str_replace(":P","<img src='img/toung.png'>",$message);
+         $message = str_replace(";)","<img src='img/wink.png'>",$message);
+         $message = str_replace(":(","<img src='img/sad_smile.png'>",$message);
+         $message = str_replace(":-S","<img src='img/confused.png'>",$message);
+         $message = str_replace(":|","<img src='img/what_smile.png'>",$message);
+         
+         $message = str_replace(":_(","<img src='img/cry_smile.png'>",$message);
+         $message = str_replace(":-$","<img src='img/red_smile.png'>",$message);
+         $message = str_replace("(H)","<img src='img/shades_smile.png'>",$message);
+         $message = str_replace(":-@","<img src='img/angry_smile.png'>",$message);
+         $message = str_replace(":-#","<img src='img/47_47.png'>",$message);
+         $message = str_replace("8o|","<img src='img/48_48.png'>",$message);
+         $message = str_replace("8-|","<img src='img/49_49.png'>",$message);
+         $message = str_replace("^o)","<img src='img/50_50.png'>",$message);
+	
+         $message = str_replace("+o(","<img src='img/52_52.png'>",$message);
+         $message = str_replace(":^|","<img src='img/71_71.png'>",$message);
+         $message = str_replace("*-)","<img src='img/72_72.png'>",$message);
+         $message = str_replace("8-)","<img src='img/75_75.png'>",$message);
+         $message = str_replace("|-)","<img src='img/77_77.png'>",$message);
+         $message = str_replace("(A)","<img src='img/angel_smile.png'>",$message);
+         $message = str_replace("(6)","<img src='img/devil_smile.png'>",$message);
+         $message = str_replace(":-*","<img src='img/51_51.png'>",$message);
+         
+         $message = str_replace("<:o)","<img src='img/74_74.png'>",$message);
+         $message = str_replace("(@)","<img src='img/cat.png'>",$message);
+         $message = str_replace("(&)","<img src='img/dog.png'>",$message);
+         $message = str_replace("(S)","<img src='img/moon.png'>",$message);
+         
+         return $message;
+     }
 }

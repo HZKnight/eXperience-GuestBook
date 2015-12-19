@@ -20,8 +20,11 @@
                 </td>
             </tr>
         </table>
-        <br>
+        <br/>
+        <div id="annuncio">
          <?php echo $announce;?>
+        </div>
+        <br/>
         <table width="760px" align="center" border="0" cellpadding="0" cellspacing="0" >
             <tr>
                 <td width=33% bgcolor=#85b0e4 height=16 align='left'><?php echo $prev;?></td>
@@ -42,15 +45,15 @@
                                 <td>
                                     <table class=msg  width='100%' valign=top align=center  cellpadding=2 cellspacing=0>
                                         <tr>
-                                            <td width="50%" bgcolor=#a4d3ff><b>Messaggio inviato da:</b>&nbsp;<?php echo $value1["1"];?></td>
-                                            <td width="50%" bgcolor=#a4d3ff><b>E-mail:</b>&nbsp;<?php echo $value1["2"];?></td>
+                                            <td width="50%" bgcolor=#a4d3ff><img src="tpl/../img/user.png" alt="Messaggio inviato da:"/>&nbsp;<b><?php echo $value1["nick"];?></b></td>
+                                            <td width="50%" bgcolor=#a4d3ff style="text-align: right;"><?php echo $value1["data"];?>&nbsp;<img src="tpl/../img/calendar.png" alt="Inviato il:"/></td>
                                         </tr>
                                         <tr>
-                                            <td colspan=2 align=justify bgcolor=#d6e9fc><b>Messaggio:</b><p class=margin><?php echo $value1["3"];?></p></td>
+                                            <td colspan=2 align=justify bgcolor=#d6e9fc><p class=margin><?php echo $value1["messaggio"];?></p></td>
                                         </tr>
                                         <tr>
-                                            <td bgcolor=#c6e1fb><b>Nazione:</b>&nbsp;<?php echo $value1["4"];?></td>
-                                            <td bgcolor=#c6e1fb><b>Inviato il:</b>&nbsp;<?php echo $value1["0"];?></td>
+                                            <td bgcolor=#c6e1fb></td>
+                                            <td bgcolor=#c6e1fb style="text-align: right;"><?php if( $value1["nazione"] <> '' ){ ?><img src="tpl/../img/nation.png" alt="Nazione:" title="<?php echo $value1["nazione"];?>"/><?php } ?><?php if( $value1["mail"] <> '' ){ ?><img src="tpl/../img/mail.png" alt="E-mail:" title="<?php echo $value1["mail"];?>"/><?php } ?></td>
                                         </tr>
                                     </table>    
                                 </td>

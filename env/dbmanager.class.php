@@ -33,6 +33,7 @@
     class DbManager {
  		
         private $_conn;
+        private $tbprefix;
  		
         /**
          * All'atto della costruziine di un nuovo ogetto esegue la connessione al DB
@@ -45,6 +46,7 @@
             $this->_conn = new PDO($connstr, $config['uname'], $config['passwd']);
             $this->_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->_conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $this->tbprefix = $config['tb_prefix'];
         }
 		
         /**
@@ -60,8 +62,9 @@
          * @param string $sql stringa contenente la query
          * @return array $result contiene il resultset
          */
-        public function &send_result_sql($sql){
+        public function &doQuery($sql){
             //Send a sql query that returns a result
+            $sql = str_replace("$", $this->tbprefix, $sql);
             $stmt = $this->_conn->query($sql);
             $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $res;
@@ -73,8 +76,10 @@
          * @param string $sql
          * @return array restituisce l'esito della query
          */
-        public function &send_command_sql($sql){
+        public function &doUpdate($sql){
             //Send a sql command that returns the number of rows affected
+            $sql = str_replace("$", $this->tbprefix, $sql);
+            echo $sql;
             $af = $this->_conn->exec($sql);
             $result["sql"] = $sql;
             $result["nbrows"] = $af;

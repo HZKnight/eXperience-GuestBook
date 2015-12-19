@@ -1,5 +1,5 @@
 {
-    "version": "0.0.1-Alfa",
+    "version": "0.0.2-Alfa",
     "lang": "it_IT",
     
     "display_msg": 4,
@@ -9,7 +9,8 @@
        "host": "localhost",
        "db": "hzsystem",
        "uname": "root",
-       "passwd": "miotuo"
+       "passwd": "miotuo",
+       "tb_prefix": "hz_"
     },
     
     "admin-pass": "miotuo",

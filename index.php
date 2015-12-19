@@ -34,5 +34,4 @@
     } catch (Exception $ex) {
         echo $ex->getCode()." - ".$ex->getMessage()."<br><pre>".$ex->getTraceAsString()."</pre>";
     }
-
 ?>
