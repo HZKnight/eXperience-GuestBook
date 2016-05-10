@@ -1137,7 +1137,7 @@ span .menu
  * JQuery-UI
  */
 
-//Tooltip
+/*Tooltip*/
     .ui-tooltip, .arrow:after {
         background: black;
         border: 2px solid white;
