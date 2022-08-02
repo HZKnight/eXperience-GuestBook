@@ -53,9 +53,13 @@ class send {
              
          } else {
              $info = "<center><font face=\"verdana\" color=\"green\" size=\"1\">Scrivi un messaggio poi premi Invia per inserirlo nel GuestBook!!<br>";
+             $view->assign('name',"");
+             $view->assign('email',"");
+             $view->assign('message',"");
+             $view->assign('place',"");
          }
          
-         $view->assign('info', $info);
+         $view->assign('info', $info);        
          
          return $view->draw('send',true);
      }
