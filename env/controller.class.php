@@ -36,8 +36,8 @@
         public function doService(HttpRequest $request) {
             global $db, $config, $view;
             
-            $start = microtime();
-            
+			$start = microtime();
+			            
             $jobName = $request->getParam('job');
 
             if ($jobName == '') {
@@ -63,7 +63,11 @@
             $view->assign("slogan",$config->get_param('slogan'));
             $view->assign("copy",$config->get_param('copyright'));
             
-            $view->assign("time", microtime()-$start);
+			settype($start, "float");
+			$now = microtime();
+			settype($now, "float");
+
+            $view->assign("time", $now-$start);
             
             $view->draw("main");
             	

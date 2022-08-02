@@ -37,7 +37,11 @@
 		}
 		
 		public function getParam($paramName) {
-			return $this->_requestParams[$paramName];
+			if (in_array($paramName, array_keys($this->_requestParams))) {
+				return $this->_requestParams[$paramName];
+			} else {
+				return '';
+			}
 		}		
 		
 		public function getRequest() {

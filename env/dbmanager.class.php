@@ -42,7 +42,7 @@
          * @throws PDOException
          */
         public function __construct($config) {
-            $connstr = $config['type'].":host=".$config['host'].";dbname=".$config['db'].";charset=utf8";
+            $connstr = $config['type'].":host=".$config['host'].";port=".$config['port'].";dbname=".$config['db'].";charset=utf8";
             $this->_conn = new PDO($connstr, $config['uname'], $config['passwd']);
             $this->_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->_conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);

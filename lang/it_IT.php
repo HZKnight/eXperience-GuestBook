@@ -22,8 +22,8 @@
  */
 
     //Config error
-    define(CFG_FILE_NOT_EXIST, "Il File di configurazione non esiste");
-    define(CFG_FILE_CORRUPTED, "Il File di configurazione è corrotto");
-    define(CFG_FILE_NOTWRITABLE, "Impossibile aggiornare il File di configurazione");
+    define("CFG_FILE_NOT_EXIST", "Il File di configurazione non esiste");
+    define("CFG_FILE_CORRUPTED", "Il File di configurazione è corrotto");
+    define("CFG_FILE_NOTWRITABLE", "Impossibile aggiornare il File di configurazione");
 
 ?>

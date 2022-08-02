@@ -59,7 +59,7 @@ class home {
         $sum=($ar)?1:0; 
         $p=((($nummsg+1)-$ar)/$display)+$sum;
         
-        if ($page==$p) $dirplay++;
+        if ($page==$p) $display++;
 
         $news = array_slice($myArray, $start, $display--);
         

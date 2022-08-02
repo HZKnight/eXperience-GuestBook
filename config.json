@@ -7,6 +7,7 @@
     "database": {
        "type": "mysql",
        "host": "localhost",
+       "port": "3307",
        "db": "hzsystem",
        "uname": "root",
        "passwd": "miotuo",
