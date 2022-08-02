@@ -6,6 +6,7 @@
     require "env/rain.tpl.class.php";
     require "env/httprequest.class.php";
     require "env/controller.class.php";
+    require "env/php7support.inc.php";
     
     include "lang/it_IT.php"; //default language
    

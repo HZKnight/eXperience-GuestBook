@@ -79,7 +79,6 @@
         public function &doUpdate($sql){
             //Send a sql command that returns the number of rows affected
             $sql = str_replace("$", $this->tbprefix, $sql);
-            echo $sql;
             $af = $this->_conn->exec($sql);
             $result["sql"] = $sql;
             $result["nbrows"] = $af;
