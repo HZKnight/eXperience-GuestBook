@@ -1,7 +1,7 @@
 Experience GuestBook
 ====================
 
-[![Experience-GuestBook](https://github.com/HZKnight/Experience-GuestBook/workflows/Experience-GuestBook/badge.svg)](https://github.com/HZKnight/Experience-GuestBook/actions)
+[![Experience-GuestBook](https://github.com/HZKnight/Experience-GuestBook/workflows/php/badge.svg)](https://github.com/HZKnight/Experience-GuestBook/actions)
 [![Release](https://img.shields.io/github/release/lucliscio/Experience-GuestBook.svg)](https://github.com/lucliscio/fanKounter/releases/latest) 
 [![Pre-release](https://img.shields.io/github/tag-pre/lucliscio/Experience-GuestBook.svg?label=pre-release)](https://github.com/lucliscio/Experience-GuestBook/releases/tag/v5.1.0-rc.1)
 ![Licence](https://img.shields.io/github/license/lucliscio/Experience-GuestBook.svg)
