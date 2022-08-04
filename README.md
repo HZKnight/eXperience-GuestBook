@@ -1,6 +1,6 @@
 Experience GuestBook
 ====================
-[![Experience-GuestBook](https://github.com/HZKnight/Experience-GuestBook/actions/workflows/PHP Composer/badge.svg)](https://github.com/HZKnight/Experience-GuestBook/actions)
+[![Experience-GuestBook](https://github.com/HZKnight/Experience-GuestBook/workflows/PHP%20Composer/badge.svg)](https://github.com/HZKnight/Experience-GuestBook/actions)
 [![Release](https://img.shields.io/github/release/HZKnight/Experience-GuestBook.svg)](https://github.com/HZKnight/Experience-GuestBook/releases/latest) 
 [![Pre-release](https://img.shields.io/github/tag-pre/HZKnight/Experience-GuestBook.svg?label=pre-release)]([https://github.com/HZKnight/Experience-GuestBook/releases/tag/v0.2.0_alfa](https://github.com/HZKnight/Experience-GuestBook/releases/tag/0.2.0_Alfa))
 ![Licence](https://img.shields.io/github/license/HZKnight/Experience-GuestBook.svg)
