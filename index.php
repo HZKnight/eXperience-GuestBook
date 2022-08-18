@@ -24,6 +24,7 @@
        RainTPL::$tpl_ext = "tpl";
        $view = new RainTPL();
        $view->assign("ver", $config->get_param("version"));
+       $view->assign("title", $config->get_param("title"));
        
        //Avvio l'aplicazione
        $app->doService(new HttpRequest());

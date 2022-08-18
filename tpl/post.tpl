@@ -4,7 +4,7 @@
                 <td>
                     <table border="0" cellspacing="1" cellpadding="0" width="760px">
                         <tr>
-                            <td id="tb1" width="100%"><b>Benvenuto in .:: Modeltreno.Tk - GuestBook ::.</b></td>
+                            <td id="tb1" width="100%"><b>Benvenuto su {$title}</b></td>
                         </tr>
                         <tr>
                             <td>

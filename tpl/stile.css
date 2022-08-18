@@ -4,34 +4,221 @@
  * Foglio di stile relativo all'impaginazione del sito.
  */
 
+ /*Importo i web fonts*/
+/*font-family: 'Segment7Standard';*/
+@import url(https://fontlibrary.org/face/segment7);
+/*font-family: 'Teleindicadores1Regular';*/
+@import url(https://fontlibrary.org/face/teleindicadores-1);
+/*font-family: 'Ubuntu', sans-serif;*/
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,500,700,300,300italic,400italic,500italic,700italic);
+/*font-family: jacky*/
+@import "fonts/jacky.fnt.css";
+/*font-family: 'Montserrat', sans-serif;*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 /*
  * -------------------
  * Stile del documento
  * -------------------
  */
-body
-{
-	/*scrollbar-3dlight-color: #C0C0C0;  	scrollbar-arrow-color: rgb(255,255,255); 	scrollbar-base-color: #008080;  	scrollbar-darkshadow-color: #C0C0C0;  	scrollbar-face-color: #008;  	scrollbar-highlight-color: white;  	scrollbar-shadow-color: white; 	scrollbar-track-color: #EEEEEE; */
-	text-align: center;
-	color: #000;
-	margin: 0px;
-	padding: 0;
-        border-top: 4px solid #06c;
-	background: #c8e6ff url( '../img/back.jpg' ) repeat-x;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: normal;
-	font-size: 77%;
-	font-family: Georgia, Times New Roman, Times, serif, verdana, helvetica, sans-serif, arial;
+body {
+    font-family: Montserrat,Serif;
+    font-size: 12px;
+    /* background-color: #BFDDFB; */
+    background: #EAFAFF url('../img/sfondo.png') repeat-x;
+    border-top: 3px solid #85B0E4;
+    margin: 0px;
+    text-align: center;
 }
 
 img{
     vertical-align: middle;
 }
 
+/*
+ * ----------------------
+ * Elementi del documento
+ * ----------------------
+ */
+
+#topbar{
+    display:table;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0px;
+	height: 49px;
+    width: 100%;
+    border-top: 3px solid #85B0E4;
+    border-bottom: 1px solid #00A3D9;
+	z-index: 5000;
+    
+ }
 
 
+.page{
+    margin: auto;
+    margin-top: 50px;
+    /*height: 3000px;*/
+    border: solid #ccc 1px;
+    border-top: none;
+    background-color: #ffffff;
+    padding-bottom: 0px;
+	z-index: -1;
+}
+
+footer {
+	border-top: 1px solid #85B0E4;
+	background-color: #fafafa;
+	text-align: center;
+}
+
+/*
+    elementi della topbar
+*/
+#topbar .minilogo{
+    display:table-cell;
+    vertical-align: middle;
+    text-align: left;
+    padding: 5px;
+    /*width: 144px;*/
+	display: flex;
+    border-right: 1px solid #eeeeee ;
+}
+
+#topbar .content{
+    display:table-cell;
+    vertical-align: middle;
+    text-align: left;
+	width: 240px;
+    padding-left: 5px;
+}
+
+#topbar img{
+    vertical-align: middle;
+}
+
+#clock{
+	font-size:12px;
+    font-weight: normal; 
+    font-style: normal; 
+    vertical-align: middle;
+}
+
+
+/*
+    elementi del footer
+*/
+footer #info{
+    border: 1px solid #ff9900;
+    border-radius: 15px;
+    padding: 0px;
+    height: 226px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 8px;
+}
+
+footer #info .organizzation{
+    text-align: center;
+    height: 226px;
+ }
+ 
+footer #info .sitemap{
+    border-left: 1px dotted #ff9900 ;
+    height: 226px;  
+}
+ 
+footer #stats{
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    height: 28px;
+    font-size:8pt;
+    color: #3366FF;
+    font-family: jacky;
+    font-weight: bold; 
+    margin: 5px;
+    margin-bottom: 8px;    
+}
+
+footer #stats .cell{
+    height: 18px;
+}
+
+footer #stats img{
+    vertical-align: middle;
+}
+
+.icon{
+    margin-left: 60px;
+    margin-right: 5px;
+}
+
+footer #tecnologies{
+    border-top: 1px solid #6699ff;
+    border-bottom: 1px solid #6699ff;
+    height: 32px;
+    margin-bottom: 5px;
+    color: #ff9900;
+}
+
+footer #copy{
+   text-align: center;
+   color: #666;
+   font-size: 11px;
+   line-height: 15px;
+   padding-left: 5px;
+}
+
+footer #copy .credits .credits_tools{color: #ff9900;}
+
+footer #copy .credits a:link{
+    color: #6699ff;
+    text-decoration:none;
+}
+
+footer #copy .credits a:visited{ 
+    text-decoration:line-through;
+    color: #6699ff;
+}
+
+footer #copy .credits a:hover { 
+    font-weight:bold;text-decoration:underline;
+    color: #6699ff;
+}
+
+footer #copy .credits a:active { 
+    font-weight:bold;text-transform: uppercase;
+    color: #6699ff;
+}
+
+footer #copy .stats{
+     border-left: 1px dotted #6699ff;
+    text-align: center;
+    vertical-align: middle;
+}
+
+footer #copy .stats img {
+    vertical-align: middle;
+}
+
+footer #tecnologies img{
+    vertical-align: middle;
+}
+
+
+/*
+ * ----------------------
+ * Elementi del generici
+ * ----------------------
+ */
+
+.shadow {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+.small {
+    font-size: 8pt;
+}
 
 /*
  * -------------------------------
@@ -583,17 +770,7 @@ hr#sep
  * Elementi vari
  * -------------
  */
-#clock
-{
-	
-	border-style: none;
-	height: 15px;
-	font: 98% Georgia, "Times New Roman" , Times, serif, verdana, helvetica, sans-serif, arial;
-	font-weight: lighter;
-	text-align: center;
-	color: #000;
-        vertical-align: middle;
-}
+
 
 #info
 {
@@ -646,7 +823,7 @@ span .menu
 {
 	background: #00a;
 	color: #fff;
-	margin: 0 auto;
+	margin: auto;
 	width: 1000px;
 	text-align: left;
 	border: 1px solid #6798d7;
@@ -719,7 +896,8 @@ span .menu
 #testata .riga2
 {
 	position: relative;
-	height: 92px;
+	/*height: 92px;*/
+	padding: 5px;
 	background: #00a url( '../img/menu-sfondo-blu.png' ) repeat-x;
 }
 
