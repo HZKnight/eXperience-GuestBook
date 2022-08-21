@@ -11,29 +11,13 @@
         <META content="lucliscio" name="author">
         <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
         
+        <link href="tpl/bootstrap.min.css" type="text/css" rel="stylesheet">
         <LINK href="tpl/hzgrid.css" type="text/css" rel="stylesheet" />
         <LINK href="tpl/stile.css" type="text/css" rel="stylesheet" />
 
         <script src="tpl/../js/clock.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-        <script>
-           $(function() {
-            $( document ).tooltip({
-              position: {
-                my: "center bottom-20",
-                at: "center top",
-                using: function( position, feedback ) {
-                  $( this ).css( position );
-                  $( "<div>" )
-                    .addClass( "arrow" )
-                    .addClass( feedback.vertical )
-                    .addClass( feedback.horizontal )
-                    .appendTo( this );
-                }
-              }
-            });
-          });   
-        </script>
+        <script src="tpl/../js/bootstrap.bundle.min.js"></script>
 
     </head>
 
@@ -57,8 +41,8 @@
         
                  
 
-            <footer class="row">
-                <div class="row">
+            <footer class="hzrow">
+                <div class="hzrow">
                     <section id="copy">
                         <div class="credits col-24">
                             <strong>&copy;2022 <?php echo $copy;?></strong> - Tutti i diritti sono riservati | Powered by  eXperience GuestBook Ver.: <?php echo $ver;?> <br/>

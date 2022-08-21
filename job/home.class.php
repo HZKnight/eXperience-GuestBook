@@ -35,7 +35,7 @@ class home {
         }
     
         // create an array of data
-        $sql = 'select * from $guestbook_post';
+        $sql = 'select * from $_guestbook_post';
         $myArray = $db->doQuery($sql);
         
         $s=sizeof($myArray);
@@ -67,14 +67,14 @@ class home {
 
         if ($start != '0') {
             $new_page=$page-1;
-            $prev="<a href='index.php?page=$new_page'><< Precedente</a>";
+            $prev="<a href='index.php?page=$new_page'>&#171; Precedente</a>";
         } else {
             $prev="";
         }
         
         if ($page != $p) {
             $new_page1=$page+1;
-            $next="<a href='index.php?page=$new_page1'>Successiva >></a>";
+            $next="<a href='index.php?page=$new_page1'>Successiva &#187;</a>";
         } else {
             $next="";
         }
@@ -99,8 +99,10 @@ class home {
         $posts = array();
         
         //sostituisco gli smile
-        for ($i=0;$i<$s;$i++){
-            $news[$i]['messaggio'] = $this->smile($news[$i]['messaggio']);
+        for ($i=0; $i<sizeof($news); $i++){
+            if($news[$i]){
+                $news[$i]['messaggio'] = $this->smile($news[$i]['messaggio']);
+            }
         }
         
         $view->assign("posts", $news);
@@ -108,7 +110,7 @@ class home {
         return $view->draw("post", true); 
     }
     
-      private function smile ($message){
+    private function smile ($message){
          $message = str_replace(":)","<img src='img/smile.png'>",$message);
          $message = str_replace(":-D","<img src='img/bigsmile.png'>",$message);
          $message = str_replace(":-O","<img src='img/omg.png'>",$message);

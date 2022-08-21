@@ -57,8 +57,7 @@ img{
 
 .page{
     margin: auto;
-    margin-top: 50px;
-    /*height: 3000px;*/
+    margin-top: 30px;
     border: solid #ccc 1px;
     border-top: none;
     background-color: #ffffff;
@@ -206,6 +205,18 @@ footer #tecnologies img{
 }
 
 
+/* Elemeti della pagina */
+.page #annuncio
+{
+    display: block;
+    border: 3px solid #66CC99;
+    width: 750px;
+    margin: auto;
+    padding: 4px;
+    background-color: #CCFFCC;
+}
+
+
 /*
  * ----------------------
  * Elementi del generici
@@ -219,7 +230,76 @@ footer #tecnologies img{
 .small {
     font-size: 8pt;
 }
+.round {
+    border-radius: 15px;
+}
 
+
+
+/*
+ * -------------------------
+ * Elementi dei post
+ * -------------------------
+ */
+
+#wellcome{
+	border:1px solid #85b0e4; 
+	text-align: center; 
+	width:95%; 
+	margin: auto; 
+	display:flex; 
+	flex-direction: 
+	column; overflow: hidden; 
+	justify-content: space-around;
+}
+
+ /* Testa di ben benvenuto primo rigo*/
+#tb1
+{
+	background: #008 url( '../img/menu-sfondo-blu.png' ) repeat-x;
+	color:#FFFFFF;
+	height: 20px;
+	vertical-align: middle;
+    text-align: center;
+}
+
+#paginatorTop {
+	border-bottom:1px solid #85b0e4; 
+	flex-direction: row; 
+	display:flex; 
+	justify-content: space-around;
+	margin: auto; 
+	margin-top:40px; 
+	margin-bottom: 16px;
+	width:95%;
+}
+
+#paginatorBottom {
+	border-top:1px solid #85b0e4; 
+	flex-direction: row; 
+	display:flex; 
+	justify-content: space-around;
+	margin: auto; 
+	margin-bottom:20px; 
+	width:95%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------- OLD -----------------------------------
 /*
  * -------------------------------
  * Link e titoli per tutto il sito
@@ -732,12 +812,7 @@ hr#sep
 	border: solid 1px #6798d7;
 }
 
-#tb1
-{
-	font-size: 110%;
-	background: #008 url( '../img/menu-sfondo-blu.png' ) repeat-x;
-	color:#FFFFFF;
-}
+
 
 .cp
 {
@@ -1299,15 +1374,7 @@ span .menu
 	border-left: 1px dotted #00a;
 }
 
-#corpo #annuncio
-{
-    display: block;
-    border: 3px solid #66CC99;
-    width: 750px;
-    margin: auto;
-    padding: 4px;
-    background-color: #CCFFCC;
-}
+
 
 
 

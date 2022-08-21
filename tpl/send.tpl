@@ -33,7 +33,7 @@
 							<br><br>
 							<hr id="sep" style="background-color:#85b0e4; border:none;" color="#85b0e4" size="2">
 							<b>Smileys:</b><br><br>
-							<script language="JavaScript" src="script.js" type="text/javascript"></script>
+							<script language="JavaScript" src="../script.js" type="text/javascript"></script>
 							<script language="JavaScript" type="text/javascript">
 							<!--
 								function setSmile(str)
@@ -56,7 +56,7 @@
 							<a href="javascript:setSmile(' :_( ')"><img src="../img/cry_smile.png" border="0"/></a>
 							<a href="javascript:setSmile(' :-$ ')"><img src="../img/red_smile.png" border="0"/></a>
 							<a href="javascript:setSmile(' (H) ')"><img src="../img/shades_smile.png" border="0"/></a>
-							<a href="javascript:setSmile(' :-@ ')"><img src="../img/angry_smile.png" border="0"/></a>
+							<a href='javascript:setSmile(" :-@ ")'><img src="../img/angry_smile.png" border="0"/></a>
 							<a href="javascript:setSmile(' :-# ')"><img src="../img/47_47.png" border="0"/></a>
 							<a href="javascript:setSmile(' 8o| ')"><img src="../img/48_48.png" border="0"/></a>
 							<a href="javascript:setSmile(' 8-| ')"><img src="../img/49_49.png" border="0"/></a>
@@ -72,7 +72,7 @@
 							<a href="javascript:setSmile(' :-* ')"><img src="../img/51_51.png" border="0"/></a>
 							<br>
 							<a href="javascript:setSmile(' <:o) ')"><img src="../img/74_74.png" border="0"/></a>
-							<a href="javascript:setSmile(' (@) ')"><img src="../img/cat.png" border="0"/></a>
+							<a href='javascript:setSmile(" (@) ")'><img src="../img/cat.png" border="0"/></a>
 							<a href="javascript:setSmile(' (&) ')"><img src="../img/dog.png" border="0"/></a>
 							<a href="javascript:setSmile(' (S) ')"><img src="../img/moon.png" border="0"/></a>
 							<br><br>

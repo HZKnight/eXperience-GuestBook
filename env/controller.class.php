@@ -67,7 +67,7 @@
 			$now = microtime();
 			settype($now, "float");
 
-            $view->assign("time", $now-$start);
+            $view->assign("time", number_format($now-$start, 4, ',', '.'));
             
             $view->draw("main");
             	

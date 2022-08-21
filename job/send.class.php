@@ -42,7 +42,7 @@ class send {
              
             if ($info == "OK"){
 
-                $sql = 'insert into $guestbook_post (nick,mail,nazione,messaggio,data) values (\''.
+                $sql = 'insert into $_guestbook_post (nick,mail,nazione,messaggio,data) values (\''.
                          $request->getParam('name').'\',\''.
                          $request->getParam('email').'\',\''.
                          ucfirst($request->getParam('place')).'\',\''.

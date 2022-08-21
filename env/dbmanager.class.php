@@ -64,7 +64,7 @@
          */
         public function &doQuery($sql){
             //Send a sql query that returns a result
-            $sql = str_replace("$", $this->tbprefix, $sql);
+            $sql = str_replace('$_', $this->tbprefix, $sql);
             $stmt = $this->_conn->query($sql);
             $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $res;
@@ -78,7 +78,7 @@
          */
         public function &doUpdate($sql){
             //Send a sql command that returns the number of rows affected
-            $sql = str_replace("$", $this->tbprefix, $sql);
+            $sql = str_replace('$_', $this->tbprefix, $sql);
             $af = $this->_conn->exec($sql);
             $result["sql"] = $sql;
             $result["nbrows"] = $af;

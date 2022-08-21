@@ -15,8 +15,8 @@ and open the template in the editor.
     }
 
     /*-- our cleafix hack -- */ 
-    .row:before, 
-    .row:after {
+    .hzrow:before, 
+    .hzrow:after {
         content:"";
         display: table ;
         clear:both;
@@ -88,4 +88,3 @@ and open the template in the editor.
         .col-5{ width: 100%;    }
         .col-6{ width: 100%;    }
     }
-    
