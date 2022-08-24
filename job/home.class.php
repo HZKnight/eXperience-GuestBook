@@ -33,23 +33,22 @@ class home {
         {
             $page = $request->getParam('page');
         }
-    
+        
+        // how many lines of data to display
+        $display = $config->get_param('display_msg');       
+        $nummsg = $db->getTableNumRows('$_guestbook_post'); //Quanti post ci sono?
+        
         // create an array of data
-        $sql = 'select * from $_guestbook_post';
+        $sql = 'select * from $_guestbook_post order by idh_post desc';
         $myArray = $db->doQuery($sql);
         
         $s=sizeof($myArray);
         
-        $nummsg = count($myArray);
-        
         // reverse the order of the data
-        $myArray = array_reverse($myArray);
+        //$myArray = array_reverse($myArray);
        
         //Caricamento messaggio di ben venuto
-        $ben = file("data1.htm");
-
-        // how many lines of data to display
-        $display = $config->get_param('display_msg');
+        $ben = file("data1.htm");       
 
         // where to start depending on what page we're viewing
         $start = ($page * $display) - ($display);

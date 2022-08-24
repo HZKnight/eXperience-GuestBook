@@ -60,7 +60,7 @@
          * Esegue un query sql e restituisce il risultato
          * 
          * @param string $sql stringa contenente la query
-         * @return array $result contiene il resultset
+         * @return array $res contiene il resultset
          */
         public function &doQuery($sql){
             //Send a sql query that returns a result
@@ -91,6 +91,18 @@
          */
         public function sql_insert_id(){
             return $this->_conn->lastInsertId();
+        }
+
+        /**
+         * Restituisce il numero di righe di una tebella
+         *
+         * @param string $table tabella 
+         * @return int numero di righe della tabella
+         */
+        public function getTableNumRows($table){
+            $sql = 'SELECT COUNT(*) AS "rows" FROM '.$table;
+            $num = $this->doQuery($sql);
+            return $num[0]['rows'];
         }
     
         /**
