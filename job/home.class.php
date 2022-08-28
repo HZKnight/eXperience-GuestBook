@@ -38,20 +38,11 @@ class home {
         $display = $config->get_param('display_msg');       
         $nummsg = $db->getTableNumRows('$_guestbook_post'); //Quanti post ci sono?
         
-        // create an array of data
-        $sql = 'select * from $_guestbook_post order by idh_post desc';
-        $myArray = $db->doQuery($sql);
-        
-        $s=sizeof($myArray);
-        
-        // reverse the order of the data
-        //$myArray = array_reverse($myArray);
-       
-        //Caricamento messaggio di ben venuto
-        $ben = file("data1.htm");       
-
         // where to start depending on what page we're viewing
         $start = ($page * $display) - ($display);
+
+        // create an array of data
+        $news = $db->getRowSubSet('$_guestbook_post', $start, $display, 'idh_post', 'desc');
 
         // the actual news we're going to print
         $ar=($nummsg+1)%$display; 
@@ -60,40 +51,13 @@ class home {
         
         if ($page==$p) $display++;
 
-        $news = array_slice($myArray, $start, $display--);
-        
         $end=$display*$page;
 
-        if ($start != '0') {
-            $new_page=$page-1;
-            $prev="<a href='index.php?page=$new_page'>&#171; Precedente</a>";
-        } else {
-            $prev="";
-        }
-        
-        if ($page != $p) {
-            $new_page1=$page+1;
-            $next="<a href='index.php?page=$new_page1'>Successiva &#187;</a>";
-        } else {
-            $next="";
-        }
-
-        $Pager = "Pagine [";
-        for ($i=1;$i<=$p;$i++)
-        {
-            $Pager.=" <a href='?page=$i'>$i</a> ";
-        }
-        $Pager.="]";
-
-        // printing the data
-        $new1=explode("#","$ben[0]");
-              
-        $view->assign("announce", $new1[3]);
+        $view->assign("announce", $config->get_param('allert'));
         $view->assign("num_mex", $nummsg);
         $view->assign("num_pages", $p);
-        $view->assign("prev", $prev);
-        $view->assign("next", $next);
-        $view->assign("pager", $Pager);
+        $view->assign("bpager", range(1, $p));
+        $view->assign("page", $page);
 
         $posts = array();
         
@@ -106,7 +70,7 @@ class home {
         
         $view->assign("posts", $news);
         
-        return $view->draw("post", true); 
+        return $view->draw("guestbook/post", true); 
     }
     
     private function smile ($message){

@@ -104,6 +104,29 @@
             $num = $this->doQuery($sql);
             return $num[0]['rows'];
         }
+
+        /**
+         * Restituisce un sottoinsieme delle righe di una tabella
+         *
+         * @param string $table
+         * @param integer $start
+         * @param integer $numrow
+         * @param string $order
+         * @param string $otype
+         * @return resultset
+         */
+        public function getRowSubSet($table, $start, $numrow, $order="", $otype=""){
+            $sql = 'SELECT * FROM '.$table;
+            
+            // Tipo di ordinamento delle righe
+            if($order != ""){
+                $sql .= ' ORDER BY '.$order." ".$otype;
+            }
+            
+            $sql .=' LIMIT '.$start.', '.$numrow;
+
+            return $this->doQuery($sql);
+        }
     
         /**
          * Formater for \' items

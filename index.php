@@ -22,7 +22,10 @@
        $app = new Controller();
        
        RainTPL::$tpl_ext = "tpl";
+       RainTPL::$tpl_dir = "templates/";
+       RainTPL::$path_replace = false;
        $view = new RainTPL();
+       
        $view->assign("ver", $config->get_param("version"));
        $view->assign("title", $config->get_param("title"));
        
