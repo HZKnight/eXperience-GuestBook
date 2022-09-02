@@ -80,7 +80,7 @@
          public function set_param(){
             $numArgs = func_num_args() ; 
             $args = func_get_args() ; 
-            call_user_func_array( array(&$this, 'set_param'.$numArgs), $args ) ; 
+            call_user_func_array(array($this, 'set_param'.$numArgs), $args ); 
          }
          
          private function set_param2($param,$val){

@@ -9,6 +9,8 @@
         <LINK rev="made" href="mailto:info@modeltreno.tk" />
         <META content="lucliscio" name="author">
         <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
         
         <link href="templates/css/bootstrap.min.css" type="text/css" rel="stylesheet">
         <link href="templates/css/hzgrid.css" type="text/css" rel="stylesheet" />

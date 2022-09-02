@@ -10,9 +10,9 @@
             </footer>
         </div>
         
-        <span class = "small">
+        <div class="small" style="text-align:center">
            Pagina generata in {$time} secondi
-        </span>
+        </div>
         
    
     </body>

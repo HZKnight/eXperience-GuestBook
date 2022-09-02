@@ -28,7 +28,6 @@ body {
     background: #EAFAFF url('../../img/sfondo.png') repeat-x;
     border-top: 3px solid #85B0E4;
     margin: 0px;
-    text-align: center;
 }
 
 img{
@@ -87,8 +86,8 @@ footer {
 #topbar .content{
     display:table-cell;
     vertical-align: middle;
-    text-align: left;
-	width: 240px;
+    text-align: center;
+	width: 280px;
     padding-left: 5px;
 }
 
@@ -237,7 +236,7 @@ footer #tecnologies img{
 }
 
 .small {
-    font-size: 8pt;
+    font-size: .775em !important;
 }
 .round {
     border-radius: 15px;
@@ -261,6 +260,7 @@ footer #tecnologies img{
 	column; overflow: hidden; 
 	justify-content: space-around;
 }
+
 
  /* Testa di ben benvenuto primo rigo*/
 #tb1
@@ -296,8 +296,21 @@ footer #tecnologies img{
 }
 
 
+/*
+ * ----------------------------
+ * Elementi del send
+ * ----------------------------
+ */
 
-
+ #send{
+	border:1px solid #85b0e4;
+	width:652px; 
+	margin: auto; 
+	display:flex; 
+	flex-direction: 
+	column; overflow: hidden; 
+	justify-content: space-around;
+}
 
 
 
@@ -484,11 +497,7 @@ ul#comunity li
  * I Form generici
  * ---------------
  */
-form
-{
-	font: 100% Georgia, "Times New Roman" , Times, serif, verdana, helvetica, sans-serif, arial;
-	
-}
+
 
 form .submit
 {

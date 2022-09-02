@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2014 Luca
+ * Copyright (C) 2022 HZKnight
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -21,8 +21,8 @@
  *  Interfaccia di comunicazione con il db (Database type MySql-PDO)
  * 
  *  @author  Luca Liscio & Marco Lettieri
- *  @version v 2.0-PDO 2014/06/25 16:03:20
- *  @copyright Copyright 2014 Luca Liscio 
+ *  @version v 2.2-PDO 2022/08/30 16:03:20
+ *  @copyright Copyright 2022 HZKnight 
  *  @license http://www.gnu.org/licenses/agpl-3.0.html GNU/AGPL3
  *   
  *  @package HZGuestBook
@@ -62,7 +62,7 @@
          * @param string $sql stringa contenente la query
          * @return array $res contiene il resultset
          */
-        public function &doQuery($sql){
+        public function doQuery($sql){
             //Send a sql query that returns a result
             $sql = str_replace('$_', $this->tbprefix, $sql);
             $stmt = $this->_conn->query($sql);
@@ -76,7 +76,7 @@
          * @param string $sql
          * @return array restituisce l'esito della query
          */
-        public function &doUpdate($sql){
+        public function doUpdate($sql){
             //Send a sql command that returns the number of rows affected
             $sql = str_replace('$_', $this->tbprefix, $sql);
             $af = $this->_conn->exec($sql);

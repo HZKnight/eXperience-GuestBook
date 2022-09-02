@@ -39,12 +39,13 @@
 			$start = microtime();
 			            
             $jobName = $request->getParam('job');
+			$action = $request->getParam('action');
 
             if ($jobName == '') {
                 $jobName = "home";
             }
                     
-            $jobClassFileName = explode("env",dirname(__FILE__))[0]."/job/".$jobName.".class.php";
+            $jobClassFileName = explode("env",dirname(__FILE__))[0]."/job/".$action."/".$jobName.".class.php";
                            
             if(!class_exists($jobName)){
                 if (file_exists($jobClassFileName)){

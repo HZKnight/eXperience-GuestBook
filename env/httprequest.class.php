@@ -42,7 +42,15 @@
 			} else {
 				return '';
 			}
-		}		
+		}
+		
+		public function has($paramName){
+			return in_array($paramName, array_keys($this->_requestParams));
+		}
+
+		public function setParam($paramName, $value){
+			$this->_requestParams[$paramName] = $value;
+		}
 		
 		public function getRequest() {
 			return $this->_requestParams;

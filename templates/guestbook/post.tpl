@@ -34,7 +34,7 @@
         </nav>
 
         {loop="posts"} 
-            <div  id="wellcome" class="round" style="margin-bottom:16px">
+            <div id="wellcome" class="round" style="margin-bottom:16px">
                 <div style="background-color: #a4d3fF; flex-direction: row; display:flex; justify-content: space-around; padding: 5px 10px">
                     <div style="width:50%; height:20px; text-align: left;"><img src="img/user.png" alt="Messaggio inviato da:" style="height:22px"/>&nbsp;<b>{$value.nick}</b></div>
                     <div style="width:50%; height:20px; text-align: right;"><img src="img/calendar.png" alt="Inviato il:" style="height:22px"/>&nbsp;{$value.data}</div>
