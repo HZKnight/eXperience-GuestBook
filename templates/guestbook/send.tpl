@@ -2,8 +2,14 @@
 
 		{include="guestbook/header"}
 
-		{if="$info"}
-			<div class="alert alert-primary" role="alert" style="width:80%; margin:auto; margin-top:16px">
+		{if="$show_success"}
+			<div class="alert alert-success" role="alert" style="width:80%; margin:auto; margin-top:16px">
+				{$info}
+			</div>
+		{/if}
+
+		{if="$show_error"}
+			<div class="alert alert-warning" role="alert" style="width:80%; margin:auto; margin-top:16px">
 				{$info}
 			</div>
 		{/if}

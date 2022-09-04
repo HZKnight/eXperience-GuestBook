@@ -34,9 +34,9 @@ class Share {
         //Calcolo i dati di testata
         $this->header_data['nummsg'] = $db->getTableNumRows('$_guestbook_post'); //Quanti post ci sono?
 
-        $ar=($this->header_data['nummsg']+1)%$display; 
+        $ar=$this->header_data['nummsg']%$display; 
         $sum=($ar)?1:0; 
-        $this->header_data['npage'] = ((($this->header_data['nummsg']+1)-$ar)/$display)+$sum; //Pagine nel guestbook
+        $this->header_data['npage'] = (($this->header_data['nummsg']-$ar)/$display)+$sum; //Pagine nel guestbook
         
         //Trasmetto i dati al template engine
         $view->assign("num_mex", $this->header_data['nummsg']);

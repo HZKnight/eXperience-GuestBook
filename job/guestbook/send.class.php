@@ -30,6 +30,9 @@ require_once 'includes/share.class.php';
 class send {
 
     private $share;
+    private $show_success = false;
+    private $show_error = false;
+    private $msg = "";
 
     public function __construct(){
         $this->share = new Share();
@@ -49,9 +52,9 @@ class send {
 
         if ($request->getParam('submit')){
             
-            $info = $this->validateData($request);
+            $status = $this->validateData($request);
              
-            if ($info == "OK"){
+            if ($status == "OK"){
 
                 $sql = 'insert into $_guestbook_post (nick,mail,nazione,messaggio,data) values (\''.
                          $request->getParam('name').'\',\''.
@@ -62,22 +65,25 @@ class send {
                  
                 $db->doUpdate($sql);
                  
-                $info = "<center><font color='green' size='1'>Grazie per aver lasciato un messaggio nel GuestBook!!<br>Messaggio inserito correttamente!</font>";
+                $this->msg = "Grazie per aver lasciato un messaggio nel GuestBook!!<br>Messaggio inserito correttamente!";
+                $this->show_success = true;
                     
             } else {
                 $view->assign('name',$request->getParam('name'));
                 $view->assign('email',$request->getParam('email'));
                 $view->assign('message',$request->getParam('message'));
                 $view->assign('place',$request->getParam('place'));
+
+                $this->msg = $status;
+                $this->show_error = true;
             }
              
-        } else {
-            $info = "Scrivi un messaggio poi premi Invia per inserirlo nel GuestBook!!";
-          
-        }
+        } 
          
-        $view->assign('info', $info);        
-         
+        $view->assign('info', $this->msg);        
+        $view->assign("show_success", $this->show_success);
+        $view->assign("show_error", $this->show_error);
+        
         return $view->draw('guestbook/send',true);
     }
      
@@ -86,30 +92,25 @@ class send {
         $nm = 1;
         $errmsg=""; 
 
-        //below section checks that name feild is empty or not/////////////////////////////////////
         if(empty($request->getParam('name')))
         {
-            $errmsg .= "<font color='red' size='1'>Devi inserire il tuo Nome o un Nick!</font>";
+            $errmsg .= "Devi inserire il tuo Nome o un Nick!";
         }
          
-        //////////////////////////////////below section checks that you have enter message or not
 	    if(empty($request->getParam('message')))
         {
-            $errmsg .= "<br><font color='red' size='1'>Devi inserire un messaggio!</font>";
+            $errmsg .= "&nbsp;Devi inserire un messaggio!";
         }	 
         
-        //if every thing is filled////////////////////////////////
 	    if(!empty($request->getParam('name'))&&!empty($request->getParam('message')))
 	    {
-            /////////////////////////////checks for the correct format of the email////////////////////////////////
             if (!empty($request->getParam('email')))
             {
 		        if(!eregi("^[A-za-z0-9\_-]+@[A-za-z0-9\_-]+.[A-za-z0-9\_-]+.*",$request->getParam('email')))
 		        {
-                    $errmsg.="<font color='red' size='1'>La tua E-mail non &egrave; corretta!</font>";
+                    $errmsg.="La tua E-mail non &egrave; corretta!";
 		        }
             }
-	        //////////////////////////////end of email check///////////////////////////////////
         }
          
         if($errmsg != ""){
