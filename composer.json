@@ -1,5 +1,5 @@
 {
-	"name" : "eXperience-GuestBook",
+	"name" : "hzknight/experience-guestbook",
 	"type" : "application",
 	"description" : "Simple PHP GuestBook",
 	"version" : "1.0.0",
