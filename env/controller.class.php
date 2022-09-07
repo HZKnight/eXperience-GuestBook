@@ -1,34 +1,51 @@
 <?php
-/**		
- *      --------------------------------------------------------------------
- *      HZCms
- *      --------------------------------------------------------------------
- *      File: controller.class.php
- *      Description: controller dell'applicazione
- *		
- *      @author Luca Liscio & Marco Lettiri
- *      @version $Id: controller.class.php,v 2.0 2008/06/30 12:03:20
- *      @package rubrica
- *      --------------------------------------------------------------------
- *      
- *      Copyright 2008 Luca Liscio & Marco Lettieri 
- *      
- *      This program is free software; you can redistribute it and/or modify
- *      it under the terms of the GNU General Public License as published by
- *      the Free Software Foundation; either version 2 of the License, or
- *      (at your option) any later version.
- *      
- *      This program is distributed in the hope that it will be useful,
- *      but WITHOUT ANY WARRANTY; without even the implied warranty of
- *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *      GNU General Public License for more details.
- *      
- *      You should have received a copy of the GNU General Public License
- *      along with this program; if not, write to the Free Software
- *      Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- *      MA 02110-1301, USA.
- */
- 
+    /* 
+     * controller.class.php
+     *                                    
+     *                                         __  __                _                     
+     *                                      ___\ \/ /_ __   ___ _ __(_) ___ _ __   ___ ___ 
+     *                                     / _ \\  /| '_ \ / _ \ '__| |/ _ \ '_ \ / __/ _ \
+     *                                    |  __//  \| |_) |  __/ |  | |  __/ | | | (_|  __/
+     *                                     \___/_/\_\ .__/ \___|_|  |_|\___|_| |_|\___\___|
+     *                                              |_| HZKnight free PHP Scripts           
+     *      
+     *                                           lucliscio <lucliscio@h0model.org>, ITALY
+     *
+     * HZCms Ver.1.1.0
+     * 
+     * -------------------------------------------------------------------------------------------
+     * Lincense
+     * -------------------------------------------------------------------------------------------
+     * Copyright (C)2022 HZKnight
+     *
+     * This program is free software: you can redistribute it and/or modify
+     * it under the terms of the GNU Affero General Public License as published by
+     * the Free Software Foundation, either version 3 of the License, or
+     * (at your option) any later version.
+     *
+     * This program is distributed in the hope that it will be useful,
+     * but WITHOUT ANY WARRANTY; without even the implied warranty of
+     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     * GNU Affero General Public License for more details.
+     *
+     * You should have received a copy of the GNU Affero General Public License
+     * along with this program.  If not, see <http://www.gnu.org/licenses/agpl-3.0.html>.
+     * -------------------------------------------------------------------------------------------
+     */ 
+
+	/**
+     * Controller dell'applicazione
+     * 
+     * @author  lucliscio <lucliscio@h0model.org>
+     * @version v 2.1 2022/08/30 12:03:20
+     * @copyright Copyright 2022 HZKnight
+     * @copyright Copyright 2013 Luca Liscio & Marco Lettieri 
+     * @license http://www.gnu.org/licenses/agpl-3.0.html GNU/AGPL3
+     *   
+     * @package HZCms
+     * @filesource
+     */
+
     session_start();	
  
     class Controller {
@@ -36,15 +53,16 @@
         public function doService(HttpRequest $request) {
             global $db, $config, $view;
             
-            $start = microtime();
-            
+			$start = microtime();
+			            
             $jobName = $request->getParam('job');
+			$action = $request->getParam('action');
 
             if ($jobName == '') {
                 $jobName = "home";
             }
                     
-            $jobClassFileName = explode("env",dirname(__FILE__))[0]."/job/".$jobName.".class.php";
+            $jobClassFileName = explode("env",dirname(__FILE__))[0]."/job/".$action."/".$jobName.".class.php";
                            
             if(!class_exists($jobName)){
                 if (file_exists($jobClassFileName)){
@@ -63,7 +81,11 @@
             $view->assign("slogan",$config->get_param('slogan'));
             $view->assign("copy",$config->get_param('copyright'));
             
-            $view->assign("time", microtime()-$start);
+			settype($start, "float");
+			$now = microtime();
+			settype($now, "float");
+
+            $view->assign("time", number_format($now-$start, 4, ',', '.'));
             
             $view->draw("main");
             	

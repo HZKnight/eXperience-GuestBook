@@ -10,12 +10,15 @@ function createtime()
 	var dayNr = ((time.getDate()<10) ? "0" : "")+ time.getDate()
 	var abbrev ="AM"
 	
-	if (hours>=12)
-		abbrev="PM"
+	/*if (hours>=12){
+		abbrev="PM";
+	}
+		
 	if (hours>12)
 	{
 		hours=hours-12
-	}	
+	}*/
+		
 	if (hours==0)
 		hours=12
 	if (minutes<=9)
@@ -44,7 +47,7 @@ function createtime()
 	if(mName==11) Month="Novembre"
 	if(mName==12) Month="Dicembre"	
 	
-	var ctime=""+Day+" "+dayNr+" "+Month+" -  Ore "+hours+":"+minutes+"."+seconds+" "+abbrev+""
+	var ctime=""+Day+" "+dayNr+" "+Month+" -  Ore "+hours+":"+minutes+"."+seconds+""
 	
 	if (document.all) 
 		document.all.clock.innerHTML=ctime
