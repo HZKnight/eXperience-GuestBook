@@ -102,37 +102,37 @@
         }
         
         private function smile ($message){
-            $message = str_replace(":)","<img src='img/smile.png'>",$message);
-            $message = str_replace(":-D","<img src='img/bigsmile.png'>",$message);
-            $message = str_replace(":-O","<img src='img/omg.png'>",$message);
-            $message = str_replace(":P","<img src='img/toung.png'>",$message);
-            $message = str_replace(";)","<img src='img/wink.png'>",$message);
-            $message = str_replace(":(","<img src='img/sad_smile.png'>",$message);
-            $message = str_replace(":-S","<img src='img/confused.png'>",$message);
-            $message = str_replace(":|","<img src='img/what_smile.png'>",$message);
+            $message = str_replace(":)","<img src='assets/images/smile.png'>",$message);
+            $message = str_replace(":-D","<img src='assets/images/bigsmile.png'>",$message);
+            $message = str_replace(":-O","<img src='assets/images/omg.png'>",$message);
+            $message = str_replace(":P","<img src='assets/images/toung.png'>",$message);
+            $message = str_replace(";)","<img src='assets/images/wink.png'>",$message);
+            $message = str_replace(":(","<img src='assets/images/sad_smile.png'>",$message);
+            $message = str_replace(":-S","<img src='assets/images/confused.png'>",$message);
+            $message = str_replace(":|","<img src='assets/images/what_smile.png'>",$message);
             
-            $message = str_replace(":_(","<img src='img/cry_smile.png'>",$message);
-            $message = str_replace(":-$","<img src='img/red_smile.png'>",$message);
-            $message = str_replace("(H)","<img src='img/shades_smile.png'>",$message);
-            $message = str_replace(":-@","<img src='img/angry_smile.png'>",$message);
-            $message = str_replace(":-#","<img src='img/47_47.png'>",$message);
-            $message = str_replace("8o|","<img src='img/48_48.png'>",$message);
-            $message = str_replace("8-|","<img src='img/49_49.png'>",$message);
-            $message = str_replace("^o)","<img src='img/50_50.png'>",$message);
+            $message = str_replace(":_(","<img src='assets/images/cry_smile.png'>",$message);
+            $message = str_replace(":-$","<img src='assets/images/red_smile.png'>",$message);
+            $message = str_replace("(H)","<img src='assets/images/shades_smile.png'>",$message);
+            $message = str_replace(":-@","<img src='assets/images/angry_smile.png'>",$message);
+            $message = str_replace(":-#","<img src='assets/images/47_47.png'>",$message);
+            $message = str_replace("8o|","<img src='assets/images/48_48.png'>",$message);
+            $message = str_replace("8-|","<img src='assets/images/49_49.png'>",$message);
+            $message = str_replace("^o)","<img src='assets/images/50_50.png'>",$message);
         
-            $message = str_replace("+o(","<img src='img/52_52.png'>",$message);
-            $message = str_replace(":^|","<img src='img/71_71.png'>",$message);
-            $message = str_replace("*-)","<img src='img/72_72.png'>",$message);
-            $message = str_replace("8-)","<img src='img/75_75.png'>",$message);
-            $message = str_replace("|-)","<img src='img/77_77.png'>",$message);
-            $message = str_replace("(A)","<img src='img/angel_smile.png'>",$message);
-            $message = str_replace("(6)","<img src='img/devil_smile.png'>",$message);
-            $message = str_replace(":-*","<img src='img/51_51.png'>",$message);
+            $message = str_replace("+o(","<img src='assets/images/52_52.png'>",$message);
+            $message = str_replace(":^|","<img src='assets/images/71_71.png'>",$message);
+            $message = str_replace("*-)","<img src='assets/images/72_72.png'>",$message);
+            $message = str_replace("8-)","<img src='assets/images/75_75.png'>",$message);
+            $message = str_replace("|-)","<img src='assets/images/77_77.png'>",$message);
+            $message = str_replace("(A)","<img src='assets/images/angel_smile.png'>",$message);
+            $message = str_replace("(6)","<img src='assets/images/devil_smile.png'>",$message);
+            $message = str_replace(":-*","<img src='assets/images/51_51.png'>",$message);
             
-            $message = str_replace("<:o)","<img src='img/74_74.png'>",$message);
-            $message = str_replace("(@)","<img src='img/cat.png'>",$message);
-            $message = str_replace("(&)","<img src='img/dog.png'>",$message);
-            $message = str_replace("(S)","<img src='img/moon.png'>",$message);
+            $message = str_replace("<:o)","<img src='assets/images/74_74.png'>",$message);
+            $message = str_replace("(@)","<img src='assets/images/cat.png'>",$message);
+            $message = str_replace("(&)","<img src='assets/images/dog.png'>",$message);
+            $message = str_replace("(S)","<img src='assets/images/moon.png'>",$message);
             
             return $message;
         }

@@ -69,11 +69,12 @@
         $app = new Controller();
        
         RainTPL::$tpl_ext = "tpl";
-        RainTPL::$tpl_dir = "templates/";
+        RainTPL::$tpl_dir = "assets/templates/";
         RainTPL::$cache_dir = "temp/templates_c/";
         RainTPL::$path_replace = false;
         $view = new RainTPL();
        
+        $view->assign("base_path", dirname($_SERVER['PHP_SELF']));
         $view->assign("ver", $config->get_param("version"));
         $view->assign("title", $config->get_param("title"));
        

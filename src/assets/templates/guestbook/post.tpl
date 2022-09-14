@@ -36,20 +36,20 @@
         {loop="posts"} 
             <div id="wellcome" class="round" style="margin-bottom:16px">
                 <div style="background-color: #a4d3fF; flex-direction: row; display:flex; justify-content: space-around; padding: 5px 10px">
-                    <div style="width:50%; height:20px; text-align: left;"><img src="img/user.png" alt="Messaggio inviato da:" style="height:22px"/>&nbsp;<b>{$value.nick}</b></div>
-                    <div style="width:50%; height:20px; text-align: right;"><img src="img/calendar.png" alt="Inviato il:" style="height:22px"/>&nbsp;{$value.data}</div>
+                    <div style="width:50%; height:20px; text-align: left;"><img src="assets/images/user.png" alt="Messaggio inviato da:" style="height:22px"/>&nbsp;<b>{$value.nick}</b></div>
+                    <div style="width:50%; height:20px; text-align: right;"><img src="assets/images/calendar.png" alt="Inviato il:" style="height:22px"/>&nbsp;{$value.data}</div>
                 </div>
                 <div style="background-color:#d6e9fc; text-align: justify; padding:10px">{$value.messaggio}</div>
                 <div style="text-align:right; background-color:#c6e1fb; padding: 5px 10px">
                     {if="$value.nazione <> ''"}
                         <a href="#" data-bs-toggle="tooltip" data-bs-title="{$value.nazione}">
-                            <img src="img/nation.png" alt="{$value.nazione}" style="height:22px"/>
+                            <img src="assets/images/nation.png" alt="{$value.nazione}" style="height:22px"/>
                         </a>
                     {/if}
                     &nbsp;
                     {if="$value.mail <> ''"}
                         <a href="#" data-bs-toggle="tooltip" data-bs-title="{$value.mail}">
-                            <img src="img/mail.png" alt="{$value.mail}" style="height:22px"/>
+                            <img src="assets/images/mail.png" alt="{$value.mail}" style="height:22px"/>
                         </a>
                     {/if}
                 </div>

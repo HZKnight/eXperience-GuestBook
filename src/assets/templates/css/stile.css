@@ -25,7 +25,7 @@ body {
     font-family: Montserrat,Serif;
     font-size: 12px;
     /* background-color: #BFDDFB; */
-    background: #EAFAFF url('../../img/sfondo.png') repeat-x;
+    background: #EAFAFF url('../../images/sfondo.png') repeat-x;
     border-top: 3px solid #85B0E4;
     margin: 0px;
 }
@@ -265,7 +265,7 @@ footer #tecnologies img{
  /* Testa di ben benvenuto primo rigo*/
 #tb1
 {
-	background: #008 url( '../../img/menu-sfondo-blu.png' ) repeat-x;
+	background: #008 url( '../../images/menu-sfondo-blu.png' ) repeat-x;
 	color:#FFFFFF;
 	height: 20px;
 	vertical-align: middle;
@@ -389,7 +389,7 @@ h2
 h2.indice
 {
 	color: #ffffff;
-	background: #008 url( '../../img/menu-sfondo-blu.png' ) repeat-x;
+	background: #008 url( '../../images/menu-sfondo-blu.png' ) repeat-x;
 	font-family: Georgia, "Times New Roman" , Times, serif;
 	font-size: 1.0em;
 	font-style: normal;
@@ -452,7 +452,7 @@ ul#menu
 {
    padding: 0;
 	border-bottom: 1px dotted #00a;
-	background: url( '../../img/1.gif' ) no-repeat 2px 5px;
+	background: url( '../../images/1.gif' ) no-repeat 2px 5px;
 }
 ul#menu li
 {
@@ -463,7 +463,7 @@ ul#mailing
 {
    padding: 0;
 	border-bottom: 1px dotted #00a;
-	background: url( '../../img/3.gif' ) no-repeat 2px 5px;
+	background: url( '../../images/3.gif' ) no-repeat 2px 5px;
 }
 ul#mailing li
 {
@@ -474,7 +474,7 @@ ul#contact
 {
 	padding: 0;
 	border-bottom: 1px dotted #00a;
-   background: url( '../../img/2.gif' ) no-repeat 2px 5px;
+   background: url( '../../images/2.gif' ) no-repeat 2px 5px;
 }
 ul#contact li
 {
@@ -485,7 +485,7 @@ ul#comunity
 {
 	padding: 0;
 	border-bottom: 1px dotted #00a;
-   background: url( '../../img/4.gif' ) no-repeat 2px 5px;
+   background: url( '../../images/4.gif' ) no-repeat 2px 5px;
 }
 ul#comunity li
 {
@@ -848,7 +848,7 @@ hr#sep
 
 .ele
 {
-	list-style-image: url("../../img/elenco.gif");
+	list-style-image: url("../../images/elenco.gif");
 	border-bottom-style: none; 	
   	padding: 0 0 0 0;
 }
@@ -876,7 +876,7 @@ hr#sep
 
 #info
 {
-	background: #fff url( '../../img/help.gif' ) no-repeat 5px 5px;
+	background: #fff url( '../../images/help.gif' ) no-repeat 5px 5px;
 	border: 1px dotted #ccc;
 	color: #06c;
 	padding: 4px;
@@ -950,7 +950,7 @@ span .menu
 {
 	color: #fff;
 	position: relative;
-	background: #00a url( '../../img/menu-sfondo-blu.png' ) repeat-x;
+	background: #00a url( '../../images/menu-sfondo-blu.png' ) repeat-x;
 	margin: 0 auto;
 	width: 1000px;
 	text-align: center;
@@ -1000,7 +1000,7 @@ span .menu
 	position: relative;
 	/*height: 92px;*/
 	padding: 5px;
-	background: #00a url( '../../img/menu-sfondo-blu.png' ) repeat-x;
+	background: #00a url( '../../images/menu-sfondo-blu.png' ) repeat-x;
 }
 
 #testata .riga2 .colonna1
@@ -1073,7 +1073,7 @@ span .menu
 	width: 101px;
 	padding: 0px;
 	border-top: medium none;
-	background: #bdf url( '../../img/bk.gif' ) repeat-y;
+	background: #bdf url( '../../images/bk.gif' ) repeat-y;
 	border-right: 1px dotted #00a;
 }
 
@@ -1144,7 +1144,7 @@ span .menu
 	width: 10em;
 	font-size: 1em;
 	font-weight: bold;
-	background: #06f url( '../../img/angolo.gif' ) no-repeat 100% 0%;
+	background: #06f url( '../../images/angolo.gif' ) no-repeat 100% 0%;
 	color: #fff;
 	white-space: nowrap;
 	padding-left: 5px;
@@ -1243,7 +1243,7 @@ span .menu
 
 #corpo #contenuto .riga1 #remember ul
 {
-	list-style-image: url("../../img/elenco.gif");
+	list-style-image: url("../../images/elenco.gif");
 	border-bottom-style: none; 	
    padding: 0 0 0 0;
 }

@@ -1,6 +1,9 @@
 <!doctype html> 
 <html lang="it">   
     <head>
+
+        <base href="{$base_path}/">
+
         <title>{$title} - {$slogan}</title>
         <META content=".:: eXperience GuestBook ::." name="title">
         <META content="Sito dedicato al modellismo ferroviario realizzaro per esperti e non." name="description">
@@ -12,9 +15,9 @@
 
         <link rel="icon" type="image/x-icon" href="favicon.ico">
         
-        <link href="templates/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-        <link href="templates/css/hzgrid.css" type="text/css" rel="stylesheet" />
-        <link href="templates/css/stile.css" type="text/css" rel="stylesheet" />
+        <link href="assets/templates/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link href="assets/templates/css/hzgrid.css" type="text/css" rel="stylesheet" />
+        <link href="assets/templates/css/stile.css" type="text/css" rel="stylesheet" />
 
         <script src="js/clock.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -26,10 +29,10 @@
 
         <div id="topbar" class="shadow">
             <div class="minilogo">
-                <img src="img/guestbook.png" alt=""/>
+                <img src="assets/images/guestbook.png" alt=""/>
             </div>
             <div class="content">
-                <img src="img/calentario20x20.png" alt=""/>
+                <img src="assets/images/calentario20x20.png" alt=""/>
                 <span id="clock"></span>
             </div>
         </div>

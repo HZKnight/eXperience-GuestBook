@@ -67,35 +67,35 @@
 									}
 								//-->
 								</script>
-								<a href="javascript:setSmile(' :) ')"><img src="img/smile.png" border="0"/></a>
-								<a href="javascript:setSmile(' :-D ')"><img src="img/bigsmile.png" border="0"/></a>
-								<a href="javascript:setSmile(' :-O ')"><img src="img/omg.png" border="0"/></a>
-								<a href="javascript:setSmile(' :P ')"><img src="img/toung.png" border="0"/></a>
-								<a href="javascript:setSmile(' ;) ')"><img src="img/wink.png" border="0"/></a>
-								<a href="javascript:setSmile(' :( ')"><img src="img/sad_smile.png" border="0"/></a>
-								<a href="javascript:setSmile(' :-S ')"><img src="img/confused.png" border="0"/></a>
-								<a href="javascript:setSmile(' :| ')"><img src="img/what_smile.png" border="0"/></a>
-								<a href="javascript:setSmile(' :_( ')"><img src="img/cry_smile.png" border="0"/></a>
-								<a href="javascript:setSmile(' :-$ ')"><img src="img/red_smile.png" border="0"/></a>
-								<a href="javascript:setSmile(' (H) ')"><img src="img/shades_smile.png" border="0"/></a>
-								<a href='javascript:setSmile(" :-@ ")'><img src="img/angry_smile.png" border="0"/></a>
-								<a href="javascript:setSmile(' :-# ')"><img src="img/47_47.png" border="0"/></a>
-								<a href="javascript:setSmile(' 8o| ')"><img src="img/48_48.png" border="0"/></a>
-								<a href="javascript:setSmile(' 8-| ')"><img src="img/49_49.png" border="0"/></a>
-								<a href="javascript:setSmile(' ^o) ')"><img src="img/50_50.png" border="0"/></a>
-								<a href="javascript:setSmile(' +o( ')"><img src="img/52_52.png" border="0"/></a>
-								<a href="javascript:setSmile(' :^| ')"><img src="img/71_71.png" border="0"/></a>
+								<a href="javascript:setSmile(' :) ')"><img src="./assets/images/smile.png" border="0"/></a>
+								<a href="javascript:setSmile(' :-D ')"><img src="assets/images/bigsmile.png" border="0"/></a>
+								<a href="javascript:setSmile(' :-O ')"><img src="assets/images/omg.png" border="0"/></a>
+								<a href="javascript:setSmile(' :P ')"><img src="assets/images/toung.png" border="0"/></a>
+								<a href="javascript:setSmile(' ;) ')"><img src="assets/images/wink.png" border="0"/></a>
+								<a href="javascript:setSmile(' :( ')"><img src="assets/images/sad_smile.png" border="0"/></a>
+								<a href="javascript:setSmile(' :-S ')"><img src="assets/images/confused.png" border="0"/></a>
+								<a href="javascript:setSmile(' :| ')"><img src="assets/images/what_smile.png" border="0"/></a>
+								<a href="javascript:setSmile(' :_( ')"><img src="assets/images/cry_smile.png" border="0"/></a>
+								<a href="javascript:setSmile(' :-$ ')"><img src="assets/images/red_smile.png" border="0"/></a>
+								<a href="javascript:setSmile(' (H) ')"><img src="assets/images/shades_smile.png" border="0"/></a>
+								<a href='javascript:setSmile(" :-@ ")'><img src="assets/images/angry_smile.png" border="0"/></a>
+								<a href="javascript:setSmile(' :-# ')"><img src="assets/images/47_47.png" border="0"/></a>
+								<a href="javascript:setSmile(' 8o| ')"><img src="assets/images/48_48.png" border="0"/></a>
+								<a href="javascript:setSmile(' 8-| ')"><img src="assets/images/49_49.png" border="0"/></a>
+								<a href="javascript:setSmile(' ^o) ')"><img src="assets/images/50_50.png" border="0"/></a>
+								<a href="javascript:setSmile(' +o( ')"><img src="assets/images/52_52.png" border="0"/></a>
+								<a href="javascript:setSmile(' :^| ')"><img src="assets/images/71_71.png" border="0"/></a>
 								<!-- br/ -->
-								<a href="javascript:setSmile(' *-) ')"><img src="img/72_72.png" border="0"/></a>
-								<a href="javascript:setSmile(' 8-) ')"><img src="img/75_75.png" border="0"/></a>
-								<a href="javascript:setSmile(' |-) ')"><img src="img/77_77.png" border="0"/></a>
-								<a href="javascript:setSmile(' (A) ')"><img src="img/angel_smile.png" border="0"/></a>
-								<a href="javascript:setSmile(' (6) ')"><img src="img/devil_smile.png" border="0"/></a>
-								<a href="javascript:setSmile(' :-* ')"><img src="img/51_51.png" border="0"/></a>
-								<a href="javascript:setSmile(' <:o) ')"><img src="img/74_74.png" border="0"/></a>
-								<a href='javascript:setSmile(" (@) ")'><img src="img/cat.png" border="0"/></a>
-								<a href="javascript:setSmile(' (&) ')"><img src="img/dog.png" border="0"/></a>
-								<a href="javascript:setSmile(' (S) ')"><img src="img/moon.png" border="0"/></a>
+								<a href="javascript:setSmile(' *-) ')"><img src="assets/images/72_72.png" border="0"/></a>
+								<a href="javascript:setSmile(' 8-) ')"><img src="assets/images/75_75.png" border="0"/></a>
+								<a href="javascript:setSmile(' |-) ')"><img src="assets/images/77_77.png" border="0"/></a>
+								<a href="javascript:setSmile(' (A) ')"><img src="assets/images/angel_smile.png" border="0"/></a>
+								<a href="javascript:setSmile(' (6) ')"><img src="assets/images/devil_smile.png" border="0"/></a>
+								<a href="javascript:setSmile(' :-* ')"><img src="assets/images/51_51.png" border="0"/></a>
+								<a href="javascript:setSmile(' <:o) ')"><img src="assets/images/74_74.png" border="0"/></a>
+								<a href='javascript:setSmile(" (@) ")'><img src="assets/images/cat.png" border="0"/></a>
+								<a href="javascript:setSmile(' (&) ')"><img src="assets/images/dog.png" border="0"/></a>
+								<a href="javascript:setSmile(' (S) ')"><img src="assets/images/moon.png" border="0"/></a>
 							</div >														
 						</div>				
 					</p>
