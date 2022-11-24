@@ -18,4 +18,4 @@ Descriprion
 -------------------------
 A small PHP Guestbook
 
-Docker image: https://hub.docker.com/repository/docker/h0model/experience-guestbook
+Docker image: https://hub.docker.com/r/h0model/experience-guestbook
