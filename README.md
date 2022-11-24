@@ -1,4 +1,4 @@
-![#eXperiance GuestBook](https://github.com/HZKnight/Experience-GuestBook/blob/master/img/guestbook.png) 
+![#eXperiance GuestBook](https://github.com/HZKnight/Experience-GuestBook/blob/master/src/assets/images/guestbook.png)
 
 [![Experience-GuestBook](https://github.com/HZKnight/Experience-GuestBook/workflows/PHP%20Composer/badge.svg)](https://github.com/HZKnight/Experience-GuestBook/actions)
 [![Release](https://img.shields.io/github/release/HZKnight/Experience-GuestBook.svg)](https://github.com/HZKnight/Experience-GuestBook/releases/latest) 
