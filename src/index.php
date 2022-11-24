@@ -74,7 +74,7 @@
         RainTPL::$path_replace = false;
         $view = new RainTPL();
        
-        $view->assign("base_path", dirname($_SERVER['PHP_SELF']));
+        $view->assign("base_path", get_basePath());
         $view->assign("ver", $config->get_param("version"));
         $view->assign("title", $config->get_param("title"));
        
@@ -92,5 +92,9 @@
         echo $ex->getCode()." - ".$ex->getMessage()."<br><pre>".$ex->getTraceAsString()."</pre>";
     } catch (Exception $ex) {
         echo $ex->getCode()." - ".$ex->getMessage()."<br><pre>".$ex->getTraceAsString()."</pre>";
+    }
+
+    function get_basePath(){
+        return (dirname($_SERVER['PHP_SELF']) == "/") ? dirname($_SERVER['PHP_SELF']) : dirname($_SERVER['PHP_SELF'])."/";
     }
 ?>

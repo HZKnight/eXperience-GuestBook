@@ -2,7 +2,7 @@
 <html lang="it">   
     <head>
 
-        <base href="{$base_path}/">
+        <base href="{$base_path}">
 
         <title>{$title} - {$slogan}</title>
         <META content=".:: eXperience GuestBook ::." name="title">
