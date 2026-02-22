@@ -1,7 +1,8 @@
 # eXperience GuestBook - Dockerfile ver.1.0
 
 # 1 - base image
-FROM php:8.5-apache
+ARG PHP_VERSION
+FROM php:${PHP_VERSION}-apache
 
 # 2 - environmente setting
 # System configuration
