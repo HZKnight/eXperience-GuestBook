@@ -26,7 +26,7 @@ jobs:
         version: '10' # O la versione che preferisci
         php_version: '8.2'
         php_extensions: dom curl libxml mbstring pdo_sqlite xdebug
-        bootstrap: ../vendor/autoload.php
+        bootstrap: vendor/autoload.php
         configuration: test/phpunit.xml
         args: --coverage-clover coverage.xml
       env:
