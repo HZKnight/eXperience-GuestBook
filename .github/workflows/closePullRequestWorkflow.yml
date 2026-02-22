@@ -105,6 +105,8 @@ jobs:
   docker-build:
     needs: [web-deploy] # <--- Dipende dal deploy
     runs-on: ubuntu-latest
+    outputs:
+      new_tag: ${{ needs.upgrade_version.outputs.new_tag }} # <--- TRASMETTE IL TAG AL PROSSIMO JOB
     strategy:
       matrix:
         php-version: ['8.1', '8.2', '8.3', '8.4', '8.5']
@@ -131,20 +133,20 @@ jobs:
 
 # 4. NOTIFICA FINALE (SUCCESSO O ERRORE)
   notify:
-    needs: [unit_test_and_quality, upgrade_version_and_deploy, docker-build]
+    needs: [unit_test_and_quality, upgrade_version, docker-build, web-deploy]
     runs-on: ubuntu-latest
     if: always() # Viene eseguito sia in caso di successo che di fallimento
     steps:
       # NOTIFICA SUCCESSO
       - name: Telegram Notify Success
-        if: ${{ needs.unit_test_and_quality.result == 'success' && needs.upgrade_version_and_deploy.result == 'success' && needs.docker-build.result == 'success' }}
+        if: ${{ needs.unit_test_and_quality.result == 'success' && needs.upgrade_version.result == 'success' && needs.docker-build.result == 'success' && needs.web-deploy.result == 'success' }}
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             ✅ DEPLOY COMPLETATO - ${{ github.repository }}
-            Versione: ${{ needs.upgrade_version_and_deploy.outputs.new_tag }}
+            Versione: ${{ needs.upgrade_version.outputs.new_tag }}
             Branch: ${{ github.ref_name }}
             
             - FTP aggiornato (cartella /src/)
