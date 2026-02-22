@@ -71,14 +71,14 @@ jobs:
           pre_release_branches: develop:dev,release:rc
           append_to_pre_release_tag: true
 
-      - name: Update version.txt
+      - name: Update version file
         run: echo "${{ steps.tag_version.outputs.new_tag }}" > src/version
 
       - name: Commit and Push Version
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add src/version.txt
+          git add src/version
           git commit -m "chore: bump version to ${{ steps.tag_version.outputs.new_tag }} [skip ci]" || echo "No changes"
           
           # github.base_ref contiene il nome del branch di destinazione (es. develop o master)
