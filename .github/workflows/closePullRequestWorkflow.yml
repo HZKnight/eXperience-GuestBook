@@ -49,7 +49,7 @@ jobs:
   # 2. VERSIONAMENTO E DEPLOY FTP
   upgrade_version_and_deploy:
     needs: [unit_test_and_quality]
-    if: success()
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -57,7 +57,7 @@ jobs:
       new_tag: ${{ steps.tag_version.outputs.new_tag }}
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -80,8 +80,6 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add src/version
           git commit -m "chore: bump version to ${{ steps.tag_version.outputs.new_tag }} [skip ci]" || echo "No changes"
-          
-          # github.base_ref contiene il nome del branch di destinazione (es. develop o master)
           git push origin HEAD:${{ github.base_ref }}
 
   web-deploy:
@@ -131,7 +129,7 @@ jobs:
           build-args: PHP_VERSION=${{ matrix.php-version }}
           # Tagging per Docker Hub: utente/repository:tag
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ matrix.php-version }}-${{ needs.version-and-deploy.outputs.new_tag }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ matrix.php-version }}-${{ needs.upgrade_version_and_deploy.outputs.new_tag }}
             ${{ matrix.php-version == '8.5' && format('{0}/{1}:latest', secrets.DOCKERHUB_USERNAME, secrets.DOCKER_IMAGE_NAME) || '' }}
     strategy:
       matrix:
@@ -145,14 +143,14 @@ jobs:
     steps:
       # NOTIFICA SUCCESSO
       - name: Telegram Notify Success
-        if: ${{ needs.unit_test_and_quality.result == 'success' && needs.version-and-deploy.result == 'success' && needs.docker-build.result == 'success' }}
+        if: ${{ needs.unit_test_and_quality.result == 'success' && needs.upgrade_version_and_deploy.result == 'success' && needs.docker-build.result == 'success' }}
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             ✅ DEPLOY COMPLETATO - ${{ github.repository }}
-            Versione: ${{ needs.version-and-deploy.outputs.new_tag }}
+            Versione: ${{ needs.upgrade_version_and_deploy.outputs.new_tag }}
             Branch: ${{ github.ref_name }}
             
             - FTP aggiornato (cartella /src/)
