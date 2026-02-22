@@ -46,8 +46,8 @@ jobs:
           -Dsonar.php.tests.reportPath=coverage.xml
  
 
-  # 2. VERSIONAMENTO E DEPLOY FTP
-  upgrade_version_and_deploy:
+  # 2. VERSIONAMENTO
+  upgrade_version: # Ho rinominato per chiarezza, deve essere il primo della catena
     needs: [unit_test_and_quality]
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
@@ -57,7 +57,7 @@ jobs:
       new_tag: ${{ steps.tag_version.outputs.new_tag }}
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -82,16 +82,14 @@ jobs:
           git commit -m "chore: bump version to ${{ steps.tag_version.outputs.new_tag }} [skip ci]" || echo "No changes"
           git push origin HEAD:${{ github.base_ref }}
 
+  # 3. DEPLOY (Fa da ponte per il tag)
   web-deploy:
-    needs: [upgrade_version_and_deploy]
-    name: Deploy
+    needs: [upgrade_version]
     runs-on: ubuntu-latest
+    outputs:
+      new_tag: ${{ needs.upgrade_version.outputs.new_tag }} # <--- TRASMETTE IL TAG AL PROSSIMO JOB
     steps:
-      
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-          
+      - uses: actions/checkout@v4
       - name: Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
@@ -99,41 +97,37 @@ jobs:
           username: ${{ secrets.FTPUSER }}
           password: ${{ secrets.FTPPASSWORD }}
           local-dir: ./src/ 
-          # Destinazione sul server (rimane dinamica come prima)
-          # server-dir: ${{ github.ref == 'refs/heads/master' && './public_html/prod/' || './public_html/staging/' }}
           exclude: |
             **/.git*
             **/.github/**
 
-  # 3. DOCKER BUILD E PUSH SU DOCKER HUB
+  # 4. DOCKER BUILD
   docker-build:
-    needs: [upgrade_version_and_deploy, web-deploy]
-    if: success()
+    needs: [web-deploy] # <--- Dipende dal deploy
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: ['8.1', '8.2', '8.3', '8.4', '8.5']
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
-      # LOGIN A DOCKER HUB
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and Push Docker Image
+      - name: Build and Push
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
           build-args: PHP_VERSION=${{ matrix.php-version }}
-          # Tagging per Docker Hub: utente/repository:tag
+          # Ora leggiamo il tag dal job 'web-deploy' che lo ha ricevuto da 'upgrade_version'
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ matrix.php-version }}-${{ needs.upgrade_version_and_deploy.outputs.new_tag }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ matrix.php-version }}-${{ needs.web-deploy.outputs.new_tag }}
             ${{ matrix.php-version == '8.5' && format('{0}/{1}:latest', secrets.DOCKERHUB_USERNAME, secrets.DOCKER_IMAGE_NAME) || '' }}
-    strategy:
-      matrix:
-        php-version: ['8.1', '8.2', '8.3', '8.4', '8.5']
 
 # 4. NOTIFICA FINALE (SUCCESSO O ERRORE)
   notify:
