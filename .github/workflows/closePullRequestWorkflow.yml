@@ -74,13 +74,15 @@ jobs:
       - name: Update version.txt
         run: echo "${{ steps.tag_version.outputs.new_tag }}" > src/version
 
-      - name: Commit version update
+      - name: Commit and Push Version
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add src/version
+          git add src/version.txt
           git commit -m "chore: bump version to ${{ steps.tag_version.outputs.new_tag }} [skip ci]" || echo "No changes"
-          git push origin master
+          
+          # github.base_ref contiene il nome del branch di destinazione (es. develop o master)
+          git push origin HEAD:${{ github.base_ref }}
 
   web-deploy:
     needs: [upgrade_version_and_deploy]
