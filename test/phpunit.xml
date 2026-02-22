@@ -19,5 +19,4 @@
       <directory suffix=".php">.</directory>
     </include>
   </source>
-
 </phpunit>

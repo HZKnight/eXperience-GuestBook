@@ -11,17 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v6
-    - uses: php-actions/composer@v6 
-    - uses: php-actions/phpunit@v4
+    - name: Checkout Code
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+
+    # Utilizzo di php-actions/phpunit per i test e la coverage
+    - name: Run PHPUnit Tests
+      uses: php-actions/phpunit@v4
+      with:
+        version: '10' # O la versione che preferisci
+        php_version: '8.2'
+        php_extensions: dom curl libxml mbstring pdo_sqlite xdebug
+        bootstrap: vendor/autoload.php
+        configuration: phpunit.xml
+        args: --coverage-clover coverage.xml
       env:
         XDEBUG_MODE: coverage
-        TEST_NAME: Example
-      with:
-        php_extensions: xdebug
-        bootstrap: vendor/autoload.php
-        configuration: test/phpunit.xml
-        args: --coverage-text coverage.xml
+
 
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
