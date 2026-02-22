@@ -1,0 +1,176 @@
+name: Close Pull Request Workflow
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+      - release
+    types: closed
+
+jobs:
+  # 1. TEST E QUALITÀ CON SONAR
+  unit_test_and_quality:
+    if: github.event.pull_request.merged == true 
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+
+    - name: Install dependencies
+      uses: php-actions/composer@v6
+
+    # Utilizzo di php-actions/phpunit per i test e la coverage     name: Run PHPUnit Tests
+    - uses: php-actions/phpunit@v4
+      with:
+        version: '10' # O la versione che preferisci
+        php_version: '8.2'
+        php_extensions: dom curl libxml mbstring pdo_sqlite xdebug
+        bootstrap: vendor/autoload.php
+        configuration: test/phpunit.xml
+        args: --coverage-clover coverage.xml
+      env:
+        XDEBUG_MODE: coverage
+
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        args: >
+          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+          -Dsonar.organization=${{ secrets.SONAR_ORG }}
+          -Dsonar.php.tests.reportPath=coverage.xml
+ 
+
+  # 2. VERSIONAMENTO E DEPLOY FTP
+  upgrade_version_and_deploy:
+    needs: [unit_test_and_quality]
+    if: success()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      new_tag: ${{ steps.tag_version.outputs.new_tag }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Automated Version Bump
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: patch
+          release_branches: master
+          pre_release_branches: develop:dev,release:rc
+          append_to_pre_release_tag: true
+
+      - name: Update version.txt
+        run: echo "${{ steps.tag_version.outputs.new_tag }}" > src/version
+
+      - name: Commit version update
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add src/version
+          git commit -m "chore: bump version to ${{ steps.tag_version.outputs.new_tag }} [skip ci]" || echo "No changes"
+          git push origin master
+
+  web-deploy:
+    needs: [upgrade_version_and_deploy]
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          
+      - name: Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTPHOST }}
+          username: ${{ secrets.FTPUSER }}
+          password: ${{ secrets.FTPPASSWORD }}
+          local-dir: ./src/ 
+          # Destinazione sul server (rimane dinamica come prima)
+          # server-dir: ${{ github.ref == 'refs/heads/master' && './public_html/prod/' || './public_html/staging/' }}
+          exclude: |
+            **/.git*
+            **/.github/**
+
+  # 3. DOCKER BUILD E PUSH SU DOCKER HUB
+  docker-build:
+    needs: web-deploy
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # LOGIN A DOCKER HUB
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          build-args: PHP_VERSION=${{ matrix.php-version }}
+          # Tagging per Docker Hub: utente/repository:tag
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ matrix.php-version }}-${{ needs.version-and-deploy.outputs.new_tag }}
+            ${{ matrix.php-version == '8.5' && format('{0}/{1}:latest', secrets.DOCKERHUB_USERNAME, secrets.DOCKER_IMAGE_NAME) || '' }}
+    strategy:
+      matrix:
+        php-version: ['8.1', '8.2', '8.3', '8.4', '8.5']
+
+# 4. NOTIFICA FINALE (SUCCESSO O ERRORE)
+  notify:
+    needs: [unit_test_and_quality, upgrade_version_and_deploy, docker-build]
+    runs-on: ubuntu-latest
+    if: always() # Viene eseguito sia in caso di successo che di fallimento
+    steps:
+      # NOTIFICA SUCCESSO
+      - name: Telegram Notify Success
+        if: ${{ needs.tests-and-sonar.result == 'success' && needs.version-and-deploy.result == 'success' && needs.docker-build.result == 'success' }}
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ✅ DEPLOY COMPLETATO - ${{ github.repository }}
+            Versione: ${{ needs.version-and-deploy.outputs.new_tag }}
+            Branch: ${{ github.ref_name }}
+            
+            - FTP aggiornato (cartella /src/)
+            - Docker Image: ${{ secrets.DOCKER_IMAGE_NAME }} (8.1-8.5)
+            - Tag 'latest' puntato su PHP 8.5
+
+      # NOTIFICA ERRORE
+      - name: Telegram Notify Failure
+        if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ❌ PIPELINE FALLITA - ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
+            
+            Attenzione! Uno dei job è fallito o è stato annullato. Il deploy potrebbe essere incompleto.
+            Controlla i log qui: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    
+    
+
+          
