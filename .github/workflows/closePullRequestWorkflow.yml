@@ -107,7 +107,7 @@ jobs:
 
   # 3. DOCKER BUILD E PUSH SU DOCKER HUB
   docker-build:
-    needs: web-deploy
+    needs: [upgrade_version_and_deploy, web-deploy]
     if: success()
     runs-on: ubuntu-latest
     steps:
