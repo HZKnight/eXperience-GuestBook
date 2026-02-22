@@ -145,7 +145,7 @@ jobs:
     steps:
       # NOTIFICA SUCCESSO
       - name: Telegram Notify Success
-        if: ${{ needs.tests-and-sonar.result == 'success' && needs.version-and-deploy.result == 'success' && needs.docker-build.result == 'success' }}
+        if: ${{ needs.unit_test_and_quality.result == 'success' && needs.version-and-deploy.result == 'success' && needs.docker-build.result == 'success' }}
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
