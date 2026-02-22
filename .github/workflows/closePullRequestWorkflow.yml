@@ -26,7 +26,7 @@ jobs:
         php_version: '8.2'
         php_extensions: dom curl libxml mbstring pdo_sqlite xdebug
         bootstrap: vendor/autoload.php
-        configuration: phpunit.xml
+        configuration: test/phpunit.xml
         args: --coverage-clover coverage.xml
       env:
         XDEBUG_MODE: coverage
