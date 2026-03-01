@@ -46,15 +46,15 @@ jobs:
           -Dsonar.php.tests.reportPath=coverage.xml
  
 
-  # 2. VERSIONAMENTO
-  upgrade_version: # Ho rinominato per chiarezza, deve essere il primo della catena
+ # 2. VERSIONAMENTO
+  upgrade_version:
     needs: [unit_test_and_quality]
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
       contents: write
     outputs:
-      new_tag: ${{ steps.tag_version.outputs.new_tag }}
+      new_tag: ${{ steps.tag_version.outputs.new_tag }} # Output del Job 2
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -82,12 +82,12 @@ jobs:
           git commit -m "chore: bump version to ${{ steps.tag_version.outputs.new_tag }} [skip ci]" || echo "No changes"
           git push origin HEAD:${{ github.base_ref }}
 
-  # 3. DEPLOY (Fa da ponte per il tag)
+  # 3. DEPLOY
   web-deploy:
     needs: [upgrade_version]
     runs-on: ubuntu-latest
     outputs:
-      new_tag: ${{ needs.upgrade_version.outputs.new_tag }} # <--- TRASMETTE IL TAG AL PROSSIMO JOB
+      new_tag: ${{ needs.upgrade_version.outputs.new_tag }} # Rilancio l'output al Job 4
     steps:
       - uses: actions/checkout@v4
       - name: Sync files
@@ -103,14 +103,14 @@ jobs:
 
   # 4. DOCKER BUILD
   docker-build:
-    needs: [web-deploy] # <--- Dipende dal deploy
+    
+    needs: [web-deploy]
     runs-on: ubuntu-latest
-    outputs:
-      new_tag: ${{ needs.upgrade_version.outputs.new_tag }} # <--- TRASMETTE IL TAG AL PROSSIMO JOB
     strategy:
       matrix:
         php-version: ['8.1', '8.2', '8.3', '8.4', '8.5']
     steps:
+
       - name: Checkout Code
         uses: actions/checkout@v4
 
@@ -126,7 +126,7 @@ jobs:
           context: .
           push: true
           build-args: PHP_VERSION=${{ matrix.php-version }}
-          # Ora leggiamo il tag dal job 'web-deploy' che lo ha ricevuto da 'upgrade_version'
+          # NOTA: Qui usiamo needs.web-deploy.outputs.new_tag
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ matrix.php-version }}-${{ needs.web-deploy.outputs.new_tag }}
             ${{ matrix.php-version == '8.5' && format('{0}/{1}:latest', secrets.DOCKERHUB_USERNAME, secrets.DOCKER_IMAGE_NAME) || '' }}
