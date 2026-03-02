@@ -46,27 +46,41 @@ jobs:
           -Dsonar.php.tests.reportPath=coverage.xml
  
  # 2. VERSIONAMENTO
-  upgrade_version:
+upgrade_version:
     needs: [unit_test_and_quality]
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    outputs:
-      new_tag: ${{ steps.tag_version.outputs.new_tag }}
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
-          fetch-depth: 0 # Carica tutta la storia dei tag
+          fetch-depth: 0
 
-      # --- STEP DI DEBUG ---
-      - name: Debug Git Tags
+      # --- SCRIPT TEMPORANEO DI PULIZIA TAG ---
+      - name: Cleanup Non-Conformant Tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Branch attuale: $(git branch --show-current)"
-          echo "Ultimi 5 tag esistenti:"
-          git tag --sort=-v:refname | head -n 5
-      # ---------------------
+          echo "Analisi dei tag non conformi..."
+          # Lista dei tag da eliminare (pattern con underscore o nomi specifici che hai indicato)
+          # Aggiungi qui altri pattern se necessario
+          TAGS_TO_DELETE=$(git tag -l "*_*" "0.2.0*" "*Alfa*" "v1.0.1" "v1.0.0")
+          
+          if [ -z "$TAGS_TO_DELETE" ]; then
+            echo "Nessun tag non conforme trovato."
+          else
+            for tag in $TAGS_TO_DELETE; do
+              echo "Eliminazione tag: $tag"
+              # Elimina localmente
+              git tag -d "$tag" || true
+              # Elimina remotamente (ignora errori se già eliminati)
+              git push origin --delete "$tag" || true
+            done
+            echo "Pulizia completata."
+          fi
+      # ----------------------------------------
 
       - name: Automated Version Bump
         id: tag_version
@@ -74,11 +88,9 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: patch
-          # Se develop è il default, trattalo comunque come pre-release
-          pre_release_branches: develop:dev
           release_branches: master
+          pre_release_branches: develop:dev,release:rc
           append_to_pre_release_tag: true
-          # Forza il fetch dei tag per il calcolo
           fetch_all_tags: true
 
       - name: Update version file
