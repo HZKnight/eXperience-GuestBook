@@ -65,8 +65,8 @@ jobs:
         run: |
           echo "Il branch di destinazione (base_ref) è: ${{ github.base_ref }}"
           echo "Il branch corrente nel container è: $(git branch --show-current)"
+
       # --- SCRIPT TEMPORANEO DI PULIZIA TAG ---
-      
       - name: Cleanup Non-Conformant Tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -89,29 +89,56 @@ jobs:
             echo "Pulizia completata."
           fi
       # ----------------------------------------
-
-      - name: Automated Version Bump
+      
+      
+      - name: Calculate and Push Tag
         id: tag_version
-        uses: mathieudutour/github-tag-action@v6.1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # FORZIAMO l'azione a sapere che siamo su develop
-          source_branch: ${{ github.base_ref }}
-          default_bump: patch
-          release_branches: master
-          pre_release_branches: develop:dev,release:rc
-          append_to_pre_release_tag: true
-          fetch_all_tags: true
-
-      - name: Update version file
-        run: echo "${{ steps.tag_version.outputs.new_tag }}" > src/version
-
-      - name: Commit and Push Version File
         run: |
+          # 1. Recupera i tag dal server
+          git fetch --tags
+
+          # 2. Trova l'ultima versione stabile (formato vX.Y.Z)
+          # Ignoriamo i tag con suffissi per calcolare il prossimo incremento
+          LATEST_STABLE=$(git tag -l "v[0-9]*.[0-9]*.[0-9]*" --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n 1)
+          
+          if [ -z "$LATEST_STABLE" ]; then
+            LATEST_STABLE="v1.0.0"
+          fi
+          echo "Ultima versione stabile rilevata: $LATEST_STABLE"
+
+          # 3. Incrementa la Patch (es. v1.0.0 -> 1.0.1)
+          VERSION=${LATEST_STABLE#v}
+          IFS='.' read -ra ADDR <<< "$VERSION"
+          NEW_PATCH=$((ADDR[2] + 1))
+          NEW_BASE="${ADDR[0]}.${ADDR[1]}.$NEW_PATCH"
+
+          # 4. Determina il tag finale in base al branch di destinazione
+          # Usiamo il numero di build di GitHub per rendere il tag unico
+          BRANCH="${{ github.base_ref }}"
+          if [ "$BRANCH" == "develop" ]; then
+            NEW_TAG="v$NEW_BASE-dev.${{ github.run_number }}"
+          elif [ "$BRANCH" == "release" ]; then
+            NEW_TAG="v$NEW_BASE-rc.${{ github.run_number }}"
+          else
+            NEW_TAG="v$NEW_BASE"
+          fi
+
+          echo "Nuovo Tag: $NEW_TAG"
+          
+          # 5. Configura Git e applica il Tag
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+          git tag $NEW_TAG
+          git push origin $NEW_TAG
+
+          # 6. Esporta per gli step/job successivi
+          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
+
+      - name: Update version file
+        run: |
+          echo "${{ steps.tag_version.outputs.new_tag }}" > src/version
           git add src/version
-          git commit -m "chore: bump version to ${{ steps.tag_version.outputs.new_tag }} [skip ci]" || echo "No changes"
+          git commit -m "chore: update version to ${{ steps.tag_version.outputs.new_tag }} [skip ci]" || echo "No changes"
           git push origin HEAD:${{ github.base_ref }}
           
   # 3. DEPLOY
