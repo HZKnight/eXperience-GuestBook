@@ -45,7 +45,6 @@ jobs:
           -Dsonar.organization=${{ secrets.SONAR_ORG }}
           -Dsonar.php.tests.reportPath=coverage.xml
  
-
  # 2. VERSIONAMENTO
   upgrade_version:
     needs: [unit_test_and_quality]
@@ -54,12 +53,20 @@ jobs:
     permissions:
       contents: write
     outputs:
-      new_tag: ${{ steps.tag_version.outputs.new_tag }} # Output del Job 2
+      new_tag: ${{ steps.tag_version.outputs.new_tag }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # Carica tutta la storia dei tag
+
+      # --- STEP DI DEBUG ---
+      - name: Debug Git Tags
+        run: |
+          echo "Branch attuale: $(git branch --show-current)"
+          echo "Ultimi 5 tag esistenti:"
+          git tag --sort=-v:refname | head -n 5
+      # ---------------------
 
       - name: Automated Version Bump
         id: tag_version
@@ -67,21 +74,24 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: patch
+          # Se develop è il default, trattalo comunque come pre-release
+          pre_release_branches: develop:dev
           release_branches: master
-          pre_release_branches: develop:dev,release:rc
           append_to_pre_release_tag: true
+          # Forza il fetch dei tag per il calcolo
+          fetch_all_tags: true
 
       - name: Update version file
         run: echo "${{ steps.tag_version.outputs.new_tag }}" > src/version
 
-      - name: Commit and Push Version
+      - name: Commit and Push Version File
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add src/version
           git commit -m "chore: bump version to ${{ steps.tag_version.outputs.new_tag }} [skip ci]" || echo "No changes"
           git push origin HEAD:${{ github.base_ref }}
-
+          
   # 3. DEPLOY
   web-deploy:
     needs: [upgrade_version]
