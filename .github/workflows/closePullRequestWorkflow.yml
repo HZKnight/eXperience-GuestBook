@@ -52,6 +52,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    # --- QUESTO È IL PONTE PER IL JOB NOTIFY ---
+    outputs:
+        new_tag: ${{ steps.tag_version.outputs.new_tag }}
+    # --------------------------------------------
     steps:
       - name: Checkout Code
         uses: actions/checkout@v6
@@ -190,27 +194,30 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ matrix.php-version }}-${{ needs.web-deploy.outputs.new_tag }}
             ${{ matrix.php-version == '8.5' && format('{0}/{1}:latest', secrets.DOCKERHUB_USERNAME, secrets.DOCKER_IMAGE_NAME) || '' }}
 
-# 4. NOTIFICA FINALE (SUCCESSO O ERRORE)
+  # 4. NOTIFICA FINALE
   notify:
     needs: [unit_test_and_quality, upgrade_version, docker-build, web-deploy]
     runs-on: ubuntu-latest
-    if: always() # Viene eseguito sia in caso di successo che di fallimento
+    if: always() 
     steps:
       # NOTIFICA SUCCESSO
       - name: Telegram Notify Success
+        # Verifichiamo che tutti i job necessari siano 'success'
         if: ${{ needs.unit_test_and_quality.result == 'success' && needs.upgrade_version.result == 'success' && needs.docker-build.result == 'success' && needs.web-deploy.result == 'success' }}
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown # Opzionale: rende il messaggio più leggibile
           message: |
-            ✅ DEPLOY COMPLETATO - ${{ github.repository }}
-            Versione: ${{ needs.upgrade_version.outputs.new_tag }}
-            Branch: ${{ github.ref_name }}
+            ✅ *DEPLOY COMPLETATO* - ${{ github.repository }}
             
-            - FTP aggiornato (cartella /src/)
-            - Docker Image: ${{ secrets.DOCKER_IMAGE_NAME }} (8.1-8.5)
-            - Tag 'latest' puntato su PHP 8.5
+            🏷️ *Versione:* `${{ needs.upgrade_version.outputs.new_tag || 'Tag non generato' }}`
+            🌿 *Branch:* `${{ github.base_ref || github.ref_name }}`
+            
+            📁 FTP aggiornato (cartella /src/)
+            🐳 Docker Image: `${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}`
+            ⚙️ Versioni PHP: 8.1 - 8.5 (Latest: 8.5)
 
       # NOTIFICA ERRORE
       - name: Telegram Notify Failure
@@ -220,12 +227,8 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            ❌ PIPELINE FALLITA - ${{ github.repository }}
-            Branch: ${{ github.ref_name }}
+            ❌ *PIPELINE FALLITA* - ${{ github.repository }}
+            🌿 Branch: ${{ github.ref_name }}
             
-            Attenzione! Uno dei job è fallito o è stato annullato. Il deploy potrebbe essere incompleto.
-            Controlla i log qui: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-    
-    
-
-          
+            ⚠️ Uno dei job è fallito o è stato annullato.
+            🔍 Log: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
