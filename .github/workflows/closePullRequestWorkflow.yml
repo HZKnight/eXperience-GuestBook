@@ -45,8 +45,8 @@ jobs:
           -Dsonar.organization=${{ secrets.SONAR_ORG }}
           -Dsonar.php.tests.reportPath=coverage.xml
  
- # 2. VERSIONAMENTO
-upgrade_version:
+  # 2. VERSIONAMENTO
+  upgrade_version:
     needs: [unit_test_and_quality]
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
