@@ -57,8 +57,16 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          # MODIFICA 1: Forziamo il checkout sul branch di destinazione (es. develop)
+          ref: ${{ github.base_ref }}
 
+      # MODIFICA 2: Inserisci questo qui per vedere cosa legge GitHub nei log
+      - name: Check branch name
+        run: |
+          echo "Il branch di destinazione (base_ref) è: ${{ github.base_ref }}"
+          echo "Il branch corrente nel container è: $(git branch --show-current)"
       # --- SCRIPT TEMPORANEO DI PULIZIA TAG ---
+      
       - name: Cleanup Non-Conformant Tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
