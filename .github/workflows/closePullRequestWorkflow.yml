@@ -92,7 +92,7 @@ jobs:
 
       - name: Automated Version Bump
         id: tag_version
-        uses: mathieudutour/github-tag-action@v6.1
+        uses: mathieudutour/github-tag-action@v6.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # FORZIAMO l'azione a sapere che siamo su develop
