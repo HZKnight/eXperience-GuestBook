@@ -45,8 +45,8 @@ jobs:
           -Dsonar.organization=${{ secrets.SONAR_ORG }}
           -Dsonar.php.tests.reportPath=coverage.xml
  
- # 2. VERSIONAMENTO
-upgrade_version:
+  # 2. VERSIONAMENTO
+  upgrade_version:
     needs: [unit_test_and_quality]
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
@@ -153,7 +153,7 @@ upgrade_version:
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ matrix.php-version }}-${{ needs.web-deploy.outputs.new_tag }}
             ${{ matrix.php-version == '8.5' && format('{0}/{1}:latest', secrets.DOCKERHUB_USERNAME, secrets.DOCKER_IMAGE_NAME) || '' }}
 
-# 4. NOTIFICA FINALE (SUCCESSO O ERRORE)
+  # 4. NOTIFICA FINALE (SUCCESSO O ERRORE)
   notify:
     needs: [unit_test_and_quality, upgrade_version, docker-build, web-deploy]
     runs-on: ubuntu-latest
