@@ -144,6 +144,22 @@ jobs:
           git add src/version
           git commit -m "chore: update version to ${{ steps.tag_version.outputs.new_tag }} [skip ci]" || echo "No changes"
           git push origin HEAD:${{ github.base_ref }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          # Usa il tag appena creato dallo script precedente
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
+          # Titolo della Release (es. Release v1.0.5-dev.12)
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          # Automatizza il changelog basandosi sui commit
+          generate_release_notes: true
+          # Se il tag contiene '-dev' o '-rc', GitHub la marcherà come "Pre-release" (etichetta arancione)
+          prerelease: ${{ contains(steps.tag_version.outputs.new_tag, '-dev') || contains(steps.tag_version.outputs.new_tag, '-rc') }}
+          # Mantiene la release come bozza se vuoi revisionarla (imposta a false per pubblicarla subito)
+          draft: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
   # 3. DEPLOY
   web-deploy:
