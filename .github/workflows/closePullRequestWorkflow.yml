@@ -210,7 +210,8 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ matrix.php-version }}-${{ needs.web-deploy.outputs.new_tag }}
             ${{ matrix.php-version == '8.5' && format('{0}/{1}:latest', secrets.DOCKERHUB_USERNAME, secrets.DOCKER_IMAGE_NAME) || '' }}
 
-  # 4. NOTIFICA FINALE
+
+  # 4. NOTIFICA FINALE (SUCCESSO O ERRORE)
   notify:
     needs: [unit_test_and_quality, upgrade_version, docker-build, web-deploy]
     runs-on: ubuntu-latest
