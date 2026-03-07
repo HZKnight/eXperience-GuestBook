@@ -71,7 +71,7 @@ jobs:
  
   # 3. VERSIONAMENTO
   upgrade_version:
-    needs: [unit_test_and_quality]
+    needs: [check_labels, unit_test_and_quality]
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     permissions:
