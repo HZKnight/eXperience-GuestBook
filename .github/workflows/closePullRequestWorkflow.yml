@@ -8,7 +8,31 @@ on:
     types: closed
 
 jobs:
-  # 1. TEST E QUALITÀ CON SONAR
+  # 1. PROTEZIONE: Controlla che la PR abbia le label corrette
+  check_labels:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify PR Labels
+        run: |
+          LABELS="${{ join(github.event.pull_request.labels.*.name, ',') }}"
+          echo "Labels trovate: $LABELS"
+          
+          # Regex per le tue label specifiche
+          ALLOWED_PATTERN="feat|fix|chore|docs|style|refactor|perf|test|breaking"
+          
+          if [[ -z "$LABELS" ]]; then
+            echo "❌ ERRORE: Nessuna etichetta trovata! Aggiungi una label (es. feat, fix) alla PR."
+            exit 1
+          fi
+          
+          if [[ ! "$LABELS" =~ $ALLOWED_PATTERN ]]; then
+            echo "❌ ERRORE: Label non valida. Usa una di queste: $ALLOWED_PATTERN"
+            exit 1
+          fi
+          echo "✅ Label valida riscontrata."
+
+  # 2. TEST E QUALITÀ (Eseguito solo se le label sono OK)
   unit_test_and_quality:
     if: github.event.pull_request.merged == true 
     runs-on: ubuntu-latest
@@ -45,7 +69,7 @@ jobs:
           -Dsonar.organization=${{ secrets.SONAR_ORG }}
           -Dsonar.php.tests.reportPath=coverage.xml
  
-  # 2. VERSIONAMENTO
+  # 3. VERSIONAMENTO
   upgrade_version:
     needs: [unit_test_and_quality]
     if: github.event.pull_request.merged == true
@@ -98,49 +122,51 @@ jobs:
       - name: Calculate and Push Tag
         id: tag_version
         run: |
-          # 1. Recupera i tag dal server
-          git fetch --tags
-
-          # 2. Trova l'ultima versione stabile (formato vX.Y.Z)
-          # Ignoriamo i tag con suffissi per calcolare il prossimo incremento
+          git fetch --tags --force
           LATEST_STABLE=$(git tag -l "v[0-9]*.[0-9]*.[0-9]*" --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n 1)
+          if [ -z "$LATEST_STABLE" ]; then LATEST_STABLE="v1.0.0"; fi
           
-          if [ -z "$LATEST_STABLE" ]; then
-            LATEST_STABLE="v1.0.0"
-          fi
-          echo "Ultima versione stabile rilevata: $LATEST_STABLE"
-
-          # 3. Incrementa la Patch (es. v1.0.0 -> 1.0.1)
           VERSION=${LATEST_STABLE#v}
           IFS='.' read -ra ADDR <<< "$VERSION"
-          NEW_PATCH=$((ADDR[2] + 1))
-          NEW_BASE="${ADDR[0]}.${ADDR[1]}.$NEW_PATCH"
+          MAJOR=${ADDR[0]}; MINOR=${ADDR[1]}; PATCH=${ADDR[2]}
 
-          # 4. Determina il tag finale in base al branch di destinazione
-          # Usiamo il numero di build di GitHub per rendere il tag unico
-          BRANCH="${{ github.base_ref }}"
-          if [ "$BRANCH" == "develop" ]; then
+          LABELS="${{ join(github.event.pull_request.labels.*.name, ',') }}"
+          
+          # LOGICA SEMANTICA
+          if [[ "$LABELS" == *"breaking"* ]]; then
+            NEW_BASE="$((MAJOR + 1)).0.0"
+          elif [[ "$LABELS" == *"feat"* ]]; then
+            NEW_BASE="$MAJOR.$((MINOR + 1)).0"
+          else
+            NEW_BASE="$MAJOR.$MINOR.$((PATCH + 1))"
+          fi
+
+          # GESTIONE BRANCH E SUFFISSI
+          RAW_BRANCH="${{ github.base_ref }}"
+          BRANCH=$(echo "$RAW_BRANCH" | sed 's|refs/heads/||' | tr '[:upper:]' '[:lower:]' | xargs)
+          
+          if [[ "$BRANCH" == "develop" ]]; then
             NEW_TAG="v$NEW_BASE-dev.${{ github.run_number }}"
-          elif [ "$BRANCH" == "release" ]; then
+          elif [[ "$BRANCH" == "release" ]]; then
             NEW_TAG="v$NEW_BASE-rc.${{ github.run_number }}"
           else
             NEW_TAG="v$NEW_BASE"
           fi
 
-          echo "Nuovo Tag: $NEW_TAG"
-          
-          # 5. Configura Git e applica il Tag
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git tag $NEW_TAG
-          git push origin $NEW_TAG
-
-          # 6. Esporta per gli step/job successivi
+          # PUSH DEL TAG
+          if ! git ls-remote --tags origin | grep -q "refs/tags/$NEW_TAG"; then
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git tag $NEW_TAG
+            git push origin $NEW_TAG
+          fi
           echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
 
       - name: Update version file
         run: |
           echo "${{ steps.tag_version.outputs.new_tag }}" > src/version
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add src/version
           git commit -m "chore: update version to ${{ steps.tag_version.outputs.new_tag }} [skip ci]" || echo "No changes"
           git push origin HEAD:${{ github.base_ref }}
@@ -161,7 +187,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-  # 3. DEPLOY
+  # 4. DEPLOY
   web-deploy:
     needs: [upgrade_version]
     runs-on: ubuntu-latest
@@ -180,7 +206,7 @@ jobs:
             **/.git*
             **/.github/**
 
-  # 4. DOCKER BUILD
+  # 5. DOCKER BUILD
   docker-build:
     
     needs: [web-deploy]
@@ -211,7 +237,7 @@ jobs:
             ${{ matrix.php-version == '8.5' && format('{0}/{1}:latest', secrets.DOCKERHUB_USERNAME, secrets.DOCKER_IMAGE_NAME) || '' }}
 
 
-  # 4. NOTIFICA FINALE (SUCCESSO O ERRORE)
+  # 6. NOTIFICA FINALE (SUCCESSO O ERRORE)
   notify:
     needs: [unit_test_and_quality, upgrade_version, docker-build, web-deploy]
     runs-on: ubuntu-latest
