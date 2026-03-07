@@ -1,7 +1,8 @@
 # eXperience GuestBook - Dockerfile ver.1.0
 
 # 1 - base image
-FROM php:8.1-apache
+ARG PHP_VERSION
+FROM php:${PHP_VERSION}-apache
 
 # 2 - environmente setting
 # System configuration
@@ -20,6 +21,7 @@ RUN a2enmod rewrite
 RUN docker-php-ext-install pdo_mysql
 RUN echo "pdo_mysql.default_socket = /run/mysqld/mysqld.sock" >> /usr/local/etc/php/conf.d/docker-php-ext-pdo_mysql.ini
 COPY Docker/start-apache.sh /root
+RUN chmod +x /root/start-apache.sh
 
 # 3 - Install application
 COPY src /var/www/html
