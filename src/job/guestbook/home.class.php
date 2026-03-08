@@ -40,8 +40,8 @@
      * Modulo per la visualizzazione dei post nel GuestBook.
      * 
      * @author  lucliscio <lucliscio@h0model.org>
-     * @version v 1.0.0
-     * @copyright Copyright 2022 HZKnight
+     * @version v 1.0.1
+     * @copyright Copyright 2026 HZKnight
      * @license http://www.gnu.org/licenses/agpl-3.0.html GNU/AGPL3
      *   
      * @package eXperience/GuestBook
@@ -83,8 +83,10 @@
 
             $end=$display*$page;
 
+            $endpaga = $header['npage'] == 0 ? 1 : $header['npage'];
+
             $view->assign("announce", $config->get_param('allert'));
-            $view->assign("bpager", range(1, $header['npage']));        
+            $view->assign("bpager", range(1, $endpaga));
             $view->assign("page", $page);
 
             $posts = array();
@@ -98,7 +100,7 @@
             
             $view->assign("posts", $news);
             
-            return $view->draw("guestbook/post", true); 
+            return $view->draw("guestbook/post", true);
         }
         
         private function smile ($message){

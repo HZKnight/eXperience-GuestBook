@@ -22,5 +22,5 @@ jobs:
         uses: tretuna/sync-branches@1.4.0
         with:
           GITHUB_TOKEN: ${{ secrets.PR_CREATOR_PAT }}
-          FROM_BRANCH: "main"
+          FROM_BRANCH: "master"
           TO_BRANCH: "develop"
