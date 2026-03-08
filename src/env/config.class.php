@@ -57,21 +57,26 @@
          * @throws ConfigException
          */
         public function __construct($cfile){
-            $json;
             
             if (!file_exists($cfile)){
                 throw new ConfigException(CFG_FILE_NOT_EXIST,103);
             } else if (($this->cfg=json_decode(file_get_contents($cfile), true))==null){
-                throw new ConfigException(CFG_FILE_CORRUPTED,113); 
+                throw new ConfigException(CFG_FILE_CORRUPTED,113);
             }
-                
+            
+            if(file_exists("./version")){
+                $this->cfg['version'] = substr(file_get_contents("./version"), 1);
+            } else {
+                $this->cfg['version'] = "none";
+            }
+            
             $this->cfgfile = $cfile;
         }
             
         /**
          * Restituisce l'intera configurazione
          * 
-         * @return array 
+         * @return array
          */
         public function get_cfg(){
             return $this->cfg;

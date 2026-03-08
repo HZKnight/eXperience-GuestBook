@@ -2,7 +2,7 @@
                 <div class="hzrow">
                     <section id="copy">
                         <div class="credits col-24">
-                            <strong>&copy;2022 {$copy}</strong> - Tutti i diritti sono riservati | Powered by  eXperience GuestBook Ver.: {$ver} <br/>
+                            <strong>&copy;2026 {$copy}</strong> - Tutti i diritti sono riservati | Powered by  eXperience GuestBook Ver.: {$ver} <br/>
                             Tutti i marchi registrati e i diritti d’autore in questa pagina appartengono ai rispettivi proprietari
                         </div>
                     </section>
