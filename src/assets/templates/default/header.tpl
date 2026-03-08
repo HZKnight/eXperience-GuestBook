@@ -16,6 +16,7 @@
         <link rel="icon" type="image/x-icon" href="favicon.ico">
         
         <link href="assets/templates/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <link href="assets/templates/css/hzgrid.css" type="text/css" rel="stylesheet" />
         <link href="assets/templates/css/stile.css" type="text/css" rel="stylesheet" />
 

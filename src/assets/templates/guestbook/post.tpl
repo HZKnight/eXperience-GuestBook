@@ -56,6 +56,13 @@
             </div>
         {/loop}
 
+        {if="count($posts)== 0"}
+            <div class="alert alert-primary" role="alert" style="width:80%; margin:auto; margin-top:16px; text-align:center; vertical-align: middle;">
+                <i class="bi bi-exclamation-circle" style="color:blue; font-size:2.5em;"></i> <section>Non sono presenti messaggi nel guestbook.</section>
+            </div>
+            <br/> 
+        {/if}
+
         <script>
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
             const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl)); 
