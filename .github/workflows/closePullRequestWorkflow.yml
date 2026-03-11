@@ -92,7 +92,7 @@ jobs:
       - name: Check branch name
         run: |
           echo "Il branch di destinazione (base_ref) è: ${{ github.base_ref }}"
-          echo "Il branch corrente nel container è: $(git branch --show-current)     
+          echo "Il branch corrente nel container è: $(git branch --show-current)"    
       
       - name: Calculate and Push Tag
         id: tag_version
