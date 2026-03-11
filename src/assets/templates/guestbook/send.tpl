@@ -3,13 +3,13 @@
 		{include="guestbook/header"}
 
 		{if="$show_success"}
-			<div class="alert alert-success" role="alert" style="width:80%; margin:auto; margin-top:16px">
+			<div class="uk-alert-success" uk-alert role="alert" style="width:80%; margin:auto; margin-top:16px">
 				{$info}
 			</div>
 		{/if}
 
 		{if="$show_error"}
-			<div class="alert alert-warning" role="alert" style="width:80%; margin:auto; margin-top:16px">
+			<div class="uk-alert-warning" uk-alert role="alert" style="width:80%; margin:auto; margin-top:16px">
 				{$info}
 			</div>
 		{/if}
@@ -23,35 +23,33 @@
 						Scrivi un messaggio poi premi Invia per inserirlo nel GuestBook!! I campi contrassegnati con l'asterisco sono obbligatori.
 					</p>
                     
-					<p>
+					
 						<div class="row">
 
 							<div class="col">
-								<div class="mb-3">
-									<label for="nick" class="form-label">Nome o Nick*</label>
-									<input type='text' class="form-control" id="nick" name='name' value='{$name}' required />
+								<div class="mb-3 uk-margin">
+									<input type='text' class="uk-input" placeholder="Nome o Nick*" id="nick" name='name' value='{$name}' required />
 								</div>
 
-								<div class="mb-3">
-									<label for="place" class="form-label">Nazione</label>
-									<input type='text' class="form-control" id="place" name='place' value='{$place}' />
+								<div class="mb-3 uk-margin">
+									<input type='text' class="uk-input" placeholder="Nazione" id="place" name='place' value='{$place}' />
 								</div>								
 							</div>
 
 							<div class="col">
-								<label for="email" class="form-label">E-mail</label>
-								<input type='email' class="form-control" id="email" name='email' value='{$email}' aria-describedby="emailHelp" />
-								<div id="emailHelp" class="form-text">Non sei obbligato ad inserire il tuo indirizzo email, ma se lo inserisci controlla che sia corretto!</div>
+								<div class="uk-margin">
+									<input type='email' class="uk-input" placeholder="E-mail" id="email" name='email' value='{$email}' aria-describedby="emailHelp" />
+									<div id="emailHelp" class="uk-text-small">Non sei obbligato ad inserire il tuo indirizzo email, ma se lo inserisci controlla che sia corretto!</div>
+								</div>
 							</div>
 
 						</div>
 
 						<div class="mb-3">
-    						<label for="message" class="form-label">Messaggio*</label>
-							<textarea cols='43' rows='10' name="message" class="form-control" id="message" name='message'>{$message}</textarea>
+							<textarea class="uk-textarea" placeholder="Messaggio*" ols='43' rows='10' name="message" class="form-control" id="message" name='message'>{$message}</textarea>
 						</div>
 
-						<div class="mb-3">
+						<div class="mb-3 uk-margin">
 							<label for="emojin" class="form-label" aria-describedby="emojinHelp">Emojin</label>
 							<span id="rmojinHelp" class="form-text"> (Chicca sulle emojin per inserirle nel messaggio)</span>
 							
@@ -98,13 +96,13 @@
 								<a href="javascript:setSmile(' (S) ')"><img src="assets/images/moon.png" border="0"/></a>
 							</div >														
 						</div>				
-					</p>
+					
 					
                 </div>	
 				
 				<div style="background-color: #c6e1fb; flex-direction: row; display:flex; justify-content:flex-end; padding:10px; text-align: right">
-					<input type='submit' name='submit' class='btn btn-primary btn-sm' value='Invia!'>&nbsp;&nbsp;
-					<input type='reset' name='reset' class='btn btn-secondary btn-sm' value='Cancella'>
+					<input type='submit' name='submit' class="uk-button uk-button-primary uk-button-small" value='Invia!'>&nbsp;&nbsp;
+					<input type='reset' name='reset' class="uk-button uk-button-primary uk-button-small" value='Cancella'>
 				</div>
 				
 			</form>
