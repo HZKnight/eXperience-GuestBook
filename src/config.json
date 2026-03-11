@@ -4,12 +4,12 @@
     "display_msg": 4,
     
     "database": {
-       "type": "mysql",
-       "host": "127.0.0.1",
-       "port": "3306",
-       "db": "hzsystem",
-       "uname": "root",
-       "passwd": "miotuo",
+       "type": "",
+       "host": "",
+       "port": "",
+       "db": "",
+       "uname": "",
+       "passwd": "",
        "tb_prefix": "hz_"
     },
     

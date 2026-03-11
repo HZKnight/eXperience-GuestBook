@@ -15,14 +15,23 @@
 
         <link rel="icon" type="image/x-icon" href="favicon.ico">
         
-        <link href="assets/templates/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+        <!-- link href="assets/templates/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" -->
+
+        <!-- UIkit CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.25.13/dist/css/uikit.min.css" />
+
+        
         <link href="assets/templates/css/hzgrid.css" type="text/css" rel="stylesheet" />
         <link href="assets/templates/css/stile.css" type="text/css" rel="stylesheet" />
 
+        <!-- UIkit JS -->
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.25.13/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.25.13/dist/js/uikit-icons.min.js"></script>
+
         <script src="js/clock.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
+        <!-- script src="js/bootstrap.bundle.min.js"></script -->
 
     </head>
 

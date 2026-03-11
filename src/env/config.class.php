@@ -1,22 +1,22 @@
 <?php
-    /* 
+    /*
      * config.class.php
-     *                                    
-     *                                         __  __                _                     
-     *                                      ___\ \/ /_ __   ___ _ __(_) ___ _ __   ___ ___ 
+     *
+     *                                         __  __                _
+     *                                      ___\ \/ /_ __   ___ _ __(_) ___ _ __   ___ ___
      *                                     / _ \\  /| '_ \ / _ \ '__| |/ _ \ '_ \ / __/ _ \
      *                                    |  __//  \| |_) |  __/ |  | |  __/ | | | (_|  __/
      *                                     \___/_/\_\ .__/ \___|_|  |_|\___|_| |_|\___\___|
-     *                                              |_| HZKnight free PHP Scripts           
-     *      
-     *                                           lucliscio <lucliscio@h0model.org>, ITALY
+     *                                              |_| HZKnight free PHP Scripts
+     *
+     *                                         lucliscio <lucliscio@h0model.org>, ITALY
      *
      * HZSystem Ver.1.0.0
-     * 
+     *
      * -------------------------------------------------------------------------------------------
      * Lincense
      * -------------------------------------------------------------------------------------------
-     * Copyright (C)2022 HZKnight
+     * Copyright (C)2026 HZKnight
      *
      * This program is free software: you can redistribute it and/or modify
      * it under the terms of the GNU Affero General Public License as published by
@@ -31,17 +31,17 @@
      * You should have received a copy of the GNU Affero General Public License
      * along with this program.  If not, see <http://www.gnu.org/licenses/agpl-3.0.html>.
      * -------------------------------------------------------------------------------------------
-     */ 
+     */
 
     /**
      * Gestore della configurazione. Il file di configurazione deve essere di tipo JSon
-     * 
+     *
      * @author  lucliscio <lucliscio@h0model.org>
-     * @version v 1.0 2013/11/27 16:03:20
-     * @copyright Copyright 2022 HZKnight
-     * @copyright Copyright 2013 Luca Liscio & Marco Lettieri 
+     * @version v 1.1 2026/03/08 17:30:20
+     * @copyright Copyright 2026 HZKnight
+     * @copyright Copyright 2013 Luca Liscio & Marco Lettieri
      * @license http://www.gnu.org/licenses/agpl-3.0.html GNU/AGPL3
-     *   
+     *
      * @package HZSystem
      * @filesource
      */
@@ -60,9 +60,11 @@
             
             if (!file_exists($cfile)){
                 throw new ConfigException(CFG_FILE_NOT_EXIST,103);
-            } else if (($this->cfg=json_decode(file_get_contents($cfile), true))==null){
+            } elseif (($this->cfg=json_decode(file_get_contents($cfile), true))==null){
                 throw new ConfigException(CFG_FILE_CORRUPTED,113);
             }
+
+            $this->cfgfile = $cfile;
             
             if(file_exists("./version")){
                 $this->cfg['version'] = substr(file_get_contents("./version"), 1);
@@ -70,12 +72,19 @@
                 $this->cfg['version'] = "none";
             }
             
-            $this->cfgfile = $cfile;
+            if(file_exists("./.env")){
+                $envfile = parse_ini_file("./.env", true);
+                foreach($envfile as $key => $value){
+                    $this->cfg[$key] = $value;
+                }
+            }
+
+            
         }
             
         /**
          * Restituisce l'intera configurazione
-         * 
+         *
          * @return array
          */
         public function get_cfg(){
@@ -84,7 +93,7 @@
             
         /**
          * Restituisce il contenuto di una voce della configuarazione
-         * 
+         *
          * @param string $param nome del parametro
          * @return mixed
          */
@@ -96,12 +105,13 @@
             
         /**
          * Aggiorna il valore di una voce della configurazione
-         * 
-         * 
+         *
+         * @param string $param nome del parametro
+         * @param mixed $val nuovo valore del parametro
          */
         public function set_param(){
-            $numArgs = func_num_args() ; 
-            $args = func_get_args() ; 
+            $numArgs = func_num_args();
+            $args = func_get_args();
             call_user_func_array(array($this, 'set_param'.$numArgs), $args ); 
         }
             
@@ -123,7 +133,8 @@
                     
         private function save_cfg(){
             $status = file_put_contents($this->cfgfile, json_encode($this->cfg));
-            if(!$status)throw new ConfigException(CFG_FILE_NOTWRITABLE,123);
+            if(!$status){
+                throw new ConfigException(CFG_FILE_NOTWRITABLE,123);
+            }
         }
     }
-?>
