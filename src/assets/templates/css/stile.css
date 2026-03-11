@@ -21,11 +21,15 @@
  * Stile del documento
  * -------------------
  */
+html{
+	background: #EAFAFE url('../../images/sfondo.png') repeat-x;
+}
+
 body {
-    font-family: Montserrat,Serif;
-    font-size: 12px;
+    /*font-family: Montserrat,Serif;*/
+    font-size: 14px;
     /* background-color: #BFDDFB; */
-    background: #EAFAFF url('../../images/sfondo.png') repeat-x;
+    background: #EAFAFE url('../../images/sfondo.png') repeat-x;
     border-top: 3px solid #85B0E4;
     margin: 0px;
 }
@@ -273,7 +277,7 @@ footer #tecnologies img{
 }
 
 #paginatorTop {
-	border-bottom:1px solid #85b0e4; 
+	border-bottom:1px solid #e5e5e5; 
 	flex-direction: row; 
 	display:flex; 
 	justify-content: space-around;
@@ -285,7 +289,7 @@ footer #tecnologies img{
 }
 
 #paginatorBottom {
-	border-top:1px solid #85b0e4; 
+	border-top:1px solid #e5e5e5; 
 	flex-direction: row; 
 	display:flex; 
 	justify-content: space-around;
@@ -293,6 +297,11 @@ footer #tecnologies img{
 	margin-bottom:20px; 
 	padding-top: 3px;
 	width:95%;
+}
+
+.disabled {
+    pointer-events:none; 
+    opacity:0.6;
 }
 
 
@@ -333,15 +342,15 @@ footer #tecnologies img{
 a:link, a:visited, a:active
 {
 	text-decoration: none;
-	font-weight: bold;
-	color: #000;
+	/*font-weight: bold;
+	color: #000;*/
 }
 
 a:hover
 {
-	/*text-decoration: underline;*/
+	/*text-decoration: underline;
 	font-weight: bold;
-	color:#dd0000;
+	color:#dd0000;*/
 }
 
 /*-- Link del menu --*/
@@ -390,7 +399,7 @@ h2.indice
 {
 	color: #ffffff;
 	background: #008 url( '../../images/menu-sfondo-blu.png' ) repeat-x;
-	font-family: Georgia, "Times New Roman" , Times, serif;
+	/*font-family: Georgia, "Times New Roman" , Times, serif;*/
 	font-size: 1.0em;
 	font-style: normal;
 	font-weight: bold;
@@ -403,7 +412,7 @@ h6.firma
 {
 	color: #000;
 	background-color: transparent;
-	font-family: Georgia, "Times New Roman" , Times, serif;
+	/*font-family: Georgia, "Times New Roman" , Times, serif;*/
 	font-size: 10px;
 	font-style: italic;
 	font-weight: normal;
@@ -505,14 +514,14 @@ form .submit
 	border: solid 2px #69f;
 	border-left-color: #d7f5ff;
 	border-right-color: #d7f5ff;
-	font: 99.9% Georgia, "Times New Roman" , Times, serif, verdana, helvetica, sans-serif, arial;
+	font: 99.9% Georgia;
 	font-weight: bolder;
 }
 
 form .txt
 {
 	border: solid 1px #ccc;
-	font: 99.9% Georgia, "Times New Roman" , Times, serif, verdana, helvetica, sans-serif, arial;
+	font: 99.9% Georgia;
 	text-align: center;
 }
 
@@ -620,7 +629,7 @@ th.thCornerR { border-width: 1px 1px 0px 0px; }
 {
 	font-weight: bold; 
 	font-size: 22px; 
-	font-family: Georgia, "Times New Roman" , Times, serif, verdana, helvetica, sans-serif, arial;
+	/*font-family: Georgia, "Times New Roman" , Times, serif, verdana, helvetica, sans-serif, arial;*/
 	text-decoration: none; 
 	line-height : 120%; 
 	color : #000000;
@@ -748,7 +757,7 @@ a.postlink:hover { text-decoration: underline; color : #DD6900}
 
 
 /* Copyright and bottom info */
-.copyright		{ font-size: 10px; font-family: Verdana, Arial, Helvetica, sans-serif; color: #444444; letter-spacing: -1px;}
+.copyright		{ font-size: 10px; /*font-family: Verdana, Arial, Helvetica, sans-serif;*/ color: #444444; letter-spacing: -1px;}
 a.copyright		{ color: #444444; text-decoration: none;}
 a.copyright:hover { color: #000000; text-decoration: underline;}
 
@@ -756,7 +765,7 @@ a.copyright:hover { color: #000000; text-decoration: underline;}
 /* Form elements */
 input,textarea, select {
 	color : #000000;
-	font: normal 11px Verdana, Arial, Helvetica, sans-serif;
+	/* font: normal 11px Verdana, Arial, Helvetica, sans-serif; */
 	/*border-color : #000000;*/
 }
 
@@ -776,7 +785,7 @@ input.button, input.mainoption, input.liteoption{
 	border: solid 2px #69f;
 	border-left-color: #d7f5ff;
 	border-right-color: #d7f5ff;
-	font-family: Georgia, "Times New Roman" , Times, serif, verdana, helvetica, sans-serif, arial;
+	/*font-family: Georgia, "Times New Roman" , Times, serif, verdana, helvetica, sans-serif, arial;*/
 	font-weight: bolder;
 }
 
@@ -808,14 +817,14 @@ input.button, input.mainoption, input.liteoption{
 
 .forum
 {
-	font-family: Georgia, Times New Roman, Times, serif, verdana, helvetica, sans-serif, arial;
+	/*font-family: Georgia, Times New Roman, Times, serif, verdana, helvetica, sans-serif, arial;*/
 	font-weight: bold;
 	color: #69f;
 }
 
 .where
 {
-	font-family: Georgia, Times New Roman, Times, serif, verdana, helvetica, sans-serif, arial;
+	/*font-family: Georgia, Times New Roman, Times, serif, verdana, helvetica, sans-serif, arial;*/
 	color: #00a;
 }
 
@@ -861,7 +870,7 @@ hr#sep
 	VERTICAL-ALIGN: middle; 
 	BORDER-LEFT: #abc9f1 1px dashed; 
 	BORDER-BOTTOM: #abc9f1 1px dashed; 
-	font-family: Georgia, Times New Roman, Times, serif, verdana, helvetica, sans-serif, arial;
+	/*font-family: Georgia, Times New Roman, Times, serif, verdana, helvetica, sans-serif, arial;*/
 	BACKGROUND-COLOR: #e8e8e9
 }
 
@@ -897,7 +906,7 @@ hr#sep
 table
 {
 	font-size: 100%;
-	font-family: Georgia, Times New Roman, Times, serif, verdana, helvetica, sans-serif, arial;
+	/*font-family: Georgia, Times New Roman, Times, serif, verdana, helvetica, sans-serif, arial;*/
 }
 
 .sub
@@ -982,7 +991,7 @@ span .menu
 #testata .riga1 .colonna2
 {
 	font-weight: bold;
-	font: verdana;
+	/*font: verdana;*/
 	position: absolute;
 	top: 0;
 	left: 300px;
@@ -1419,7 +1428,7 @@ span .menu
     padding: 10px 20px;
     color: #000;
     border-radius: 20px;
-    font: 14px "Helvetica Neue", Sans-Serif;
+    font-size: 14px;
     box-shadow: 0 0 7px black;
   }
   .arrow {

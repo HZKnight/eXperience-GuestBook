@@ -5,9 +5,9 @@
                 
                 <div style="display:flex; height:20px;">
                     {if="$job <> 'send'"}
-                        <a href="?job=send">Lasciami un messaggio!</a>
+                        <a class="uk-button uk-button-link" href="?job=send">Lasciami un messaggio!</a>
                     {else}
-                        <a href="index.php">Torna al GuestBook</a>
+                        <a class="uk-button uk-button-link" href="index.php">Torna al GuestBook</a>
                     {/if}
                 </div>
             </div>

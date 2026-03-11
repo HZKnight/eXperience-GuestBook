@@ -92,32 +92,7 @@ jobs:
       - name: Check branch name
         run: |
           echo "Il branch di destinazione (base_ref) è: ${{ github.base_ref }}"
-          echo "Il branch corrente nel container è: $(git branch --show-current)"
-
-      # --- SCRIPT TEMPORANEO DI PULIZIA TAG ---
-      - name: Cleanup Non-Conformant Tags
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "Analisi dei tag non conformi..."
-          # Lista dei tag da eliminare (pattern con underscore o nomi specifici che hai indicato)
-          # Aggiungi qui altri pattern se necessario
-          TAGS_TO_DELETE=$(git tag -l "*_*" "0.2.0*" "*Alfa*" "v1.0.1" "v1.0.0")
-          
-          if [ -z "$TAGS_TO_DELETE" ]; then
-            echo "Nessun tag non conforme trovato."
-          else
-            for tag in $TAGS_TO_DELETE; do
-              echo "Eliminazione tag: $tag"
-              # Elimina localmente
-              git tag -d "$tag" || true
-              # Elimina remotamente (ignora errori se già eliminati)
-              git push origin --delete "$tag" || true
-            done
-            echo "Pulizia completata."
-          fi
-      # ----------------------------------------
-      
+          echo "Il branch corrente nel container è: $(git branch --show-current)     
       
       - name: Calculate and Push Tag
         id: tag_version

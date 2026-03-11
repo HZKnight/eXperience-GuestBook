@@ -1,1 +1,5 @@
 /src/temp/templates_c/*
+/src/temp/cache/*
+/src/temp/logs/*
+/src/temp/sessions/*
+/src/.env

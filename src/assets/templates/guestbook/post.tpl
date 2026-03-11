@@ -1,20 +1,20 @@
     <p>
         {include="guestbook/header"}
 
-        <div class="alert alert-primary" role="alert" style="width:80%; margin:auto; margin-top:16px">
+        <div class="uk-alert-primary" uk-alert role="alert" style="width:80%; margin:auto; margin-top:16px">
             {$announce}
         </div>
 
         <nav id="paginatorTop" aria-laber="top pager" style="text-align:center">
             <div style="display:flex; text-align:center" class="pager">
-                <ul class="pagination pagination-sm pager">
+                <ul class="uk-pagination" uk-margin>
 
                     <li class="page-item {if="$page == 1"}disabled{/if}">
                         <a class="page-link" href="?page={$page-1}" aria-label="Precedente">
-                            <span aria-hidden="true">&laquo;</span>
+                            <span uk-pagination-previous></span>
                         </a>
                     </li>
-                    
+                        
                     {loop="bpager"}
                         {if="$value == $page"}
                             <li class="page-item  active"><a class="page-link" href="?page={$value}">{$value}</a></li>
@@ -25,7 +25,7 @@
 
                     <li class="page-item {if="$page == $num_pages"}disabled{/if}">
                         <a class="page-link" href="?page={$page+1}" aria-label="Successivo">
-                            <span aria-hidden="true">&raquo;</span>
+                            <span uk-pagination-next></span>
                         </a>
                     </li>
 
@@ -42,13 +42,13 @@
                 <div style="background-color:#d6e9fc; text-align: justify; padding:10px">{$value.messaggio}</div>
                 <div style="text-align:right; background-color:#c6e1fb; padding: 5px 10px">
                     {if="$value.nazione <> ''"}
-                        <a href="#" data-bs-toggle="tooltip" data-bs-title="{$value.nazione}">
+                        <a href="#" uk-tooltip="{$value.nazione}">
                             <img src="assets/images/nation.png" alt="{$value.nazione}" style="height:22px"/>
                         </a>
                     {/if}
                     &nbsp;
                     {if="$value.mail <> ''"}
-                        <a href="#" data-bs-toggle="tooltip" data-bs-title="{$value.mail}">
+                        <a href="#" uk-tooltip="{$value.mail}">
                             <img src="assets/images/mail.png" alt="{$value.mail}" style="height:22px"/>
                         </a>
                     {/if}
@@ -57,8 +57,8 @@
         {/loop}
 
         {if="count($posts)== 0"}
-            <div class="alert alert-primary" role="alert" style="width:80%; margin:auto; margin-top:16px; text-align:center; vertical-align: middle;">
-                <i class="bi bi-exclamation-circle" style="color:blue; font-size:2.5em;"></i> <section>Non sono presenti messaggi nel guestbook.</section>
+            <div uk-alert role="alert" style="width:80%; margin:auto; margin-top:16px; text-align:center; vertical-align: middle;">
+                <span uk-icon="icon: info" style="color:#3AAEF9; font-size:2.5em;"></span> <section>Non sono presenti messaggi nel guestbook.</section>
             </div>
             <br/> 
         {/if}
@@ -70,11 +70,11 @@
         
          <nav id="paginatorBottom">
             <div style="display:flex; text-align:center" class="pager">
-                <ul class="pagination pagination-sm pager">
+                 <ul class="uk-pagination" uk-margin>
 
                     <li class="page-item {if="$page == 1"}disabled{/if}">
                         <a class="page-link" href="?page={$page-1}" aria-label="Precedente">
-                            <span aria-hidden="true">&laquo;</span>
+                            <span uk-pagination-previous></span>
                         </a>
                     </li>
                     
@@ -88,7 +88,7 @@
 
                     <li class="page-item {if="$page == $num_pages"}disabled{/if}">
                         <a class="page-link" href="?page={$page+1}" aria-label="Successivo">
-                            <span aria-hidden="true">&raquo;</span>
+                            <span uk-pagination-next></span>
                         </a>
                     </li>
 
