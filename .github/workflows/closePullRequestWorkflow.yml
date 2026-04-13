@@ -147,7 +147,7 @@ jobs:
           git push origin HEAD:${{ github.base_ref }}
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           # Usa il tag appena creato dallo script precedente
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
