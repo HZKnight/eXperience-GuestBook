@@ -27,6 +27,5 @@ jobs:
             refactor
             perf
             test
-            sync
           # Richiede che ci sia almeno un tipo valido
           requireScope: false
