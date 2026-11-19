@@ -19,7 +19,7 @@ jobs:
           echo "Labels trovate: $LABELS"
           
           # Regex per le tue label specifiche
-          ALLOWED_PATTERN="feat|fix|chore|docs|style|refactor|perf|test|breaking"
+          ALLOWED_PATTERN="feat|fix|chore|docs|style|refactor|perf|test|breaking|sync"
           
           if [[ -z "$LABELS" ]]; then
             echo "❌ ERRORE: Nessuna etichetta trovata! Aggiungi una label (es. feat, fix) alla PR."
