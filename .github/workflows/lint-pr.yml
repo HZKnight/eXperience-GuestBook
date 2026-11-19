@@ -8,6 +8,31 @@ on:
       - synchronize
 
 jobs:
+
+  # 1. PROTEZIONE: Controlla che la PR abbia le label corrette
+  check_labels:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify PR Labels
+        run: |
+          LABELS="${{ join(github.event.pull_request.labels.*.name, ',') }}"
+          echo "Labels trovate: $LABELS"
+          
+          # Regex per le tue label specifiche
+          ALLOWED_PATTERN="feat|fix|chore|docs|style|refactor|perf|test|breaking|sync"
+          
+          if [[ -z "$LABELS" ]]; then
+            echo "❌ ERRORE: Nessuna etichetta trovata! Aggiungi una label (es. feat, fix) alla PR."
+            exit 1
+          fi
+          
+          if [[ ! "$LABELS" =~ $ALLOWED_PATTERN ]]; then
+            echo "❌ ERRORE: Label non valida. Usa una di queste: $ALLOWED_PATTERN"
+            exit 1
+          fi
+          echo "✅ Label valida riscontrata."
+
   main:
     permissions:
       pull-requests: read
@@ -27,6 +52,7 @@ jobs:
             refactor
             perf
             test
+            breaking
             sync
           # Richiede che ci sia almeno un tipo valido
           requireScope: false
