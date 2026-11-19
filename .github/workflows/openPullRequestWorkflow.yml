@@ -32,7 +32,16 @@ jobs:
       env:
         XDEBUG_MODE: coverage
 
-
+    - name: Check Sonar Secrets
+      run: |
+        echo "PROJECT_KEY length: ${#PROJECT_KEY}"
+        echo "ORG length: ${#ORG}"
+        echo "TOKEN length: ${#TOKEN}"
+      env:
+        PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+        ORG: ${{ secrets.SONAR_ORG }}
+        TOKEN: ${{ secrets.SONAR_TOKEN }}
+    
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
       env:
