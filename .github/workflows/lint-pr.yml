@@ -11,7 +11,6 @@ jobs:
 
   # 1. PROTEZIONE: Controlla che la PR abbia le label corrette
   check_labels:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Verify PR Labels
@@ -34,6 +33,7 @@ jobs:
           echo "✅ Label valida riscontrata."
 
   main:
+    needs: [check_labels]
     permissions:
       pull-requests: read
     runs-on: ubuntu-latest
