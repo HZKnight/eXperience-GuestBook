@@ -1,0 +1,32 @@
+name: Auto Label PR from Title Prefix
+
+on:
+  pull_request:
+    types: [opened, edited]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  label-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Estrai prefisso e assegna label
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = context.payload.pull_request.title;
+            // Cerca il testo prima dei due punti (es. "feat: ..." o "fix(ui): ...")
+            const match = title.match(/^([a-zA-Z0-9_-]+)(?:\([^)]+\))?:/);
+
+            if (match && match[1]) {
+              const label = match[1].toLowerCase().trim();
+              
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                labels: [label]
+              });
+            }
