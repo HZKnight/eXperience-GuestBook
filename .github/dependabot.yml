@@ -7,4 +7,9 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
+    labels:
+      - "dependencies"
+      - "chore"
+    assignees:
+      - "lucliscio"
     open-pull-requests-limit: 10
